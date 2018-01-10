@@ -6,6 +6,8 @@ import GroveRoomForm from "../../components/GroveRoomForm";
 import { Col, Row, Container } from "../../components/Grid";
 import { List } from "../../components/List";
 import Nav from "../../components/Nav";
+import API from "../../utils/API";
+// import Toggle from "../../components/Toggle";
 
 class Home extends Component {
 
@@ -18,9 +20,15 @@ state= {
   initalArtist: "",
   grooveRoomInput: ""
 };
+handleFormClose = event =>{
 
+}
+  handleFormCreate = event => {
 
+}
+  getYouTubeVideos = () => {
 
+  }
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -28,13 +36,19 @@ state= {
     });
   };
 
+    handleFormSubmit = event => {
+      event.preventDefault();
+      this.getYouTubeVideos();
+    };
 
   render(){
     return(
 <Container>
 <Row>
     <Col size="md-12">
-<Jumbotron></Jumbotron>
+<Jumbotron>
+<GroveRoomForm></GroveRoomForm>
+</Jumbotron>
     </Col>
 
 </Row>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 import SignUp from "../SignInForm"
 import Login from "../LoginForm"
-
+// import Toggle from "../Toggle"
 
 const Nav = props => (
 <div>
@@ -34,8 +34,9 @@ const Nav = props => (
 	        <li><a href="#">
 	        		<span>
 						<label className="switch">
-						  <input type="checkbox"/>
+						  <input type="checkbox" id="darkModeSlider"/>
 						  <span className="slider round"></span>
+			
 						</label>
 					</span>
 				</a>

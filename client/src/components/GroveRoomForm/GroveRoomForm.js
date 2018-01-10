@@ -37,8 +37,15 @@ const GroveRoomForm = props =>(
 
             </div>
             <div className="modal-footer" id="myModalFooter">
-                <button type="button" className="btn btn-default modal-closer" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary" id="createGrooveRoom" data-dismiss="modal">Create</button>
+                <button type="button"
+                className="btn btn-default modal-closer"
+                 data-dismiss="modal"
+                 onClick={props.handleFormClose}>Close</button>
+                <button type="button"
+                className="btn btn-primary"
+                 id="createGrooveRoom"
+                onClick={props.handleFormCreate}
+                 data-dismiss="modal">Create</button>
             </div>
         </div>
     </div>
