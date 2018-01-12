@@ -1,6 +1,6 @@
 module.exports = function (sequelize, Sequelize) {
 
-       var User = sequelize.define('user', {
+       var User = sequelize.define('User', {
 
            id: {
                autoIncrement: true,
@@ -49,7 +49,16 @@ module.exports = function (sequelize, Sequelize) {
 
 
        });
+User.associate = function(models){
+      User.hasMany(models.Messages, {
+       onDelete: "cascade"
+     });
 
+    // User.belongsToMany(models.Chatrooms,{
+    //     through: "ThroughTable",
+    //
+    // })
+};
        return User;
 
    };

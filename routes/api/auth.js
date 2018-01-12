@@ -6,21 +6,21 @@ const authController = require("../../controllers/authcontroller");
 
 module.exports = function (app, passport) {
 
-    app.get('/signup', authController.signup);
+    router.get('/signup', authController.signup);
 
-    app.get('/signin', authController.signin);
+    router.get('/signin', authController.signin);
 
-    app.get('/dashboard', isLoggedIn, authController.dashboard);
+    router.get('/dashboard', isLoggedIn, authController.dashboard);
 
-    app.get('/logout', authController.logout);
+    router.get('/logout', authController.logout);
 
-    app.post('/signup', passport.authenticate('local-signup', {
+    router.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/dashboard',
 
         failureRedirect: '/signup'
     }));
 
-    app.post('/signin', passport.authenticate('local-signin', {
+    router.post('/signin', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
 
         failureRedirect: '/signin'

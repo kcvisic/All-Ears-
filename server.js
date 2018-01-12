@@ -15,6 +15,10 @@ if (process.env.NODE_ENV === "production") {
 // Send every request to the React app
 // Define any API routes before this runs
 const db = require("./models");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(routes);
 

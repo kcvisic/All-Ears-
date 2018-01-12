@@ -3,21 +3,23 @@ import axios from "axios";
 export default {
 
   signUp:function(){
-    return axios.get('/signup');
+    return axios.get('/auth/signup');
   },
 
   signIn:function(){
-    return axios.get('/signin');
+    return axios.get('/auth/signin');
   },
 
   dashBoard:function(){
-    return axios.get('/dashboard');
+    return axios.get('/auth/dashboard');
   },
   logOut:function(){
-    return axios.get('/logout');
+    return axios.get('/auth/logout');
   },
 
   SubmitSignup:function(){
-    return axios.post('/signup');
+    return axios.post('/auth/signup');
   },
+
+  
 };
