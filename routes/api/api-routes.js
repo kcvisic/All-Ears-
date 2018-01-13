@@ -9,7 +9,8 @@ router.get("/chatroom", function(req,res){
   db.Chatroom.findAll({
     include: [db.User, db.Messages]
   }). then(function(Chatroom){
-    res.json(Chatroom);
+  console.log(res.json(Chatroom));
+
   })
 
 })

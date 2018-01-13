@@ -12,55 +12,29 @@ import API from "../../utils/API";
 class Home extends Component {
 
 state= {
-  email: "",
-  userName: "",
-  password: "",
-  confirmPassword: "",
-  initialSong: "",
-  initalArtist: "",
-  grooveRoomInput: ""
+
+
 };
-handleFormClose = event =>{
 
-}
-  handleFormCreate = event => {
 
-}
   getYouTubeVideos = () => {
 
   }
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-    handleFormSubmit = event => {
-      event.preventDefault();
-      this.getYouTubeVideos();
-    };
 
   render(){
     return(
-<Container>
-<Row>
-    <Col size="md-12">
-<Jumbotron>
-<GroveRoomForm></GroveRoomForm>
-</Jumbotron>
-    </Col>
+      <Container>
+      <Row>
+          <Col size="md-12">
+      <Jumbotron>
 
-</Row>
-
-</Container>
-
-
-
+      </Jumbotron>
+          </Col>
+      </Row>
+      </Container>
     )
   }
 
 }
-
 
 export default Home;

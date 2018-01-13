@@ -8,8 +8,9 @@ const Jumbotron = props =>(
             Visitors to our website have an opportunity to experience acoustic chat rooms which are specifically designed to encourage fruitful discussions content sharing.</p>
         <p>
          <button type="button" className="btn btn-primary btn-lg buttonShowModal" data-toggle="modal" data-target="#myModal">New Groove Room</button>
-         <GroveRoomForm></GroveRoomForm>
+
         </p>
+         <GroveRoomForm ></GroveRoomForm>
       </div>
 )
 

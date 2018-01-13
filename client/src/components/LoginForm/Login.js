@@ -5,7 +5,7 @@ const Login = props => (
 
 <form>
 
-			<div className="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
+			<div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
 			    <div className="modal-dialog">
 			        <div className="modal-content">
 			            <div className="modal-header">

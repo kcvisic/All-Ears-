@@ -23,19 +23,16 @@ module.exports = function (sequelize, Sequelize) {
 
   Chatroom.associate = function(models){
 
-  //   Chatroom.belongsTo(models.User, {
-  //     foreignKey: {
-  //     allowNull: false
-  //   }
-  //
-  // });
+    Chatroom.belongsTo(models.User, { as: "Creator", 
+      foreignKey: "user_id"})
+
   Chatroom.hasMany(models.Messages, {
       onDelete: "cascade"
 
   })
   Chatroom.belongsToMany(models.User,{
       through: "ThroughTable",
-  
+
   })
 
 };
