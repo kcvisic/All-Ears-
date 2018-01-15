@@ -66,7 +66,7 @@ render(){
             </div>
             <div id="errorMessageContainer"/>
 
-            </div>
+
             <div className="modal-footer" id="myModalFooter">
 
                 <button onClick={this.handleFormClose}
@@ -79,6 +79,7 @@ render(){
                 className="btn btn-primary"
                  id="createGrooveRoom"
                  data-dismiss="modal">Create</button>
+                     </div>
             </div>
         </div>
     </div>

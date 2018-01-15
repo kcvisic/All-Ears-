@@ -1,11 +1,14 @@
 import React from "react";
+import API from "../../utils/API";
 
 class SignUp extends React.Component {
   constructor(props){
     super(props);
     this.state ={
       email:"",
-      userName:"",
+      firstname:"",
+      lastname:"",
+      username:"",
       password:"",
       confirmPassword:"",
 
@@ -14,7 +17,7 @@ class SignUp extends React.Component {
   }
   handleInputChange(event) {
     console.log("Handling Change");
-    var name = event.target.name;
+    const name = event.target.name;
     this.setState({
       [name] : event.target.value
     })
@@ -26,15 +29,26 @@ class SignUp extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("HandleFormCreate Called");
-    console.log(this.state);
-  }
+    API.submitSignup(this.state)
+    .then(res =>
+      this.setState({
+        email:this.state.email,
+        firstname:this.state.firstname,
+        lastname:this.state.lastname,
+        username:this.state.username,
+        password:this.state.password,
+        confirmPassword:this.state.confirmPassword
+      })
+
+    )
+    .catch(err => console.log(err));
+  };
 
 
   render(){
     return(
       <form>
-      <div className="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
+      <div className="modal fade" id="signUpModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
     	   <div className="modal-dialog">
     	     <div className="modal-content">
     	       <div className="modal-header">
@@ -53,11 +67,29 @@ class SignUp extends React.Component {
           onChange={this.handleInputChange}
         required
           />
+          <label className="modal-inline-text">Firstname</label>
+            <input className="form-control"
+            name ="firstname"
+            value ={this.firstname}
+            type="text"
+            id="firstname"
+            onChange={this.handleInputChange}
+          required
+            />
+            <label className="modal-inline-text">Lastname</label>
+              <input className="form-control"
+              name ="lastname"
+              value ={this.lastname}
+              type="text"
+              id="lastname"
+              onChange={this.handleInputChange}
+            required
+              />
 
           <label className="modal-inline-text">Username</label>
           <input className="form-control"
-          name="userName"
-          value ={this.userName}
+          name="username"
+          value ={this.username}
           type="text"
           id="usernameInput"
           onChange={this.handleInputChange}
@@ -88,10 +120,12 @@ class SignUp extends React.Component {
               className="btn btn-default"
               data-dismiss="modal"
               onClick={this.handleFormClose}>Close</button>
+
               <button type="button"
               className="btn btn-primary"
               id="signUpButton"
-              onClick={this.handleFormSubmit}>Sign Up</button>
+              onClick={this.handleFormSubmit}
+                data-dismiss="modal">Sign Up</button>
                 </div>
               </div>
             </div>
