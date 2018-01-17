@@ -8,24 +8,45 @@ import { List } from "../../components/List";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import YouTube from "../../components/YouTube";
+import ChatCards from "../../components/ChatCards";
+import chatroom from "../../chatroom.json";
+
 // import Toggle from "../../components/Toggle";
 
 class Home extends Component {
 
-state= {
-
-
+state = {
+  chatroom
 };
+
+setFriend = id => {
+  this.setState({chatroom})
+}
   render(){
-    return(
+    return (
       <Container>
       <Row>
           <Col size="md-12">
       <Jumbotron>
-
       </Jumbotron>
           </Col>
       </Row>
+      
+     <Row>  
+         
+       {this.state.chatroom.map( chat => (
+            <Col size="sm-12 md-4">  
+         <ChatCards
+             
+              key={chat.id}
+              name={chat.name}
+              song={chat.song}
+              artist={chat.artist}
+              />
+            </Col>
+              ))}   
+          
+        </Row>      
       </Container>
     )
   }
