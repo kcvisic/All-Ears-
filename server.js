@@ -16,6 +16,12 @@ if (process.env.NODE_ENV === "production") {
 // Define any API routes before this runs
 const db = require("./models");
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());

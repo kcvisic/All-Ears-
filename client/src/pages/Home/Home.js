@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List } from "../../components/List";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
+import YouTube from "../../components/YouTube";
 // import Toggle from "../../components/Toggle";
 
 class Home extends Component {
@@ -15,10 +16,6 @@ state= {
 
 
 };
-
-
-
-
   render(){
     return(
       <Container>

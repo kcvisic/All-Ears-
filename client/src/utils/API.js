@@ -3,7 +3,6 @@ import axios from "axios";
 export default {
 
   signIn:function(data){
-
     return axios.post('/auth/signin', data);
   },
 

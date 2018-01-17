@@ -3,6 +3,8 @@ const router = require("express").Router();
 const authController = require("../../controllers/authcontroller");
 
 module.exports = function(app, passport){
+  router.route("/authenticated")
+    .get(authController.isAuthenticated);
 
   router.route("/signup")
     .post(authController.signUp);

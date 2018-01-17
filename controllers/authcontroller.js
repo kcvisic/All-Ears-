@@ -6,6 +6,19 @@ function generateHash(password) {
 };
 
 module.exports = {
+
+  isAuthenticated: function(req,res){
+    const session = req.session;
+    var isAuthenticated = 401;
+    if(session){
+      console.log("The session exists");
+      if(session.authenticated){
+          console.log("The session is authenticated");
+          isAuthenticated = 200;
+      }
+    }
+    res.sendStatus(isAuthenticated);
+  },
   signUp: function(req, res) {
     console.log("Auth controller signup called");
     console.log(req.body);
@@ -35,6 +48,7 @@ module.exports = {
           } else {
             console.log("Succsesfully created user");
             res.sendStatus(200);
+            req.session.authenticated = true;
           }
         });
       }
@@ -42,6 +56,9 @@ module.exports = {
   },
   logout: function(req, res) {
     console.log("Auth controller logout called");
-    res.sendStatus(200);
+    req.session.destroy(function(){
+      res.sendStatus(200);
+    })
+
   },
 }

@@ -33,6 +33,7 @@ module.exports = function(passport) {
 
         console.log(`Auth signin for ${username} successful`);
         // everything went okay, return the user info...
+        req.session.authenticated = true;
         return done(null, user.get())
 
       })
@@ -42,7 +43,6 @@ module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {
     done(null, user.id);
-
   });
 
   // deserialize user

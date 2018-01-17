@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+import GroveRoom from "./pages/GroveRoom";
 
 import Nav from "./components/Nav";
 
@@ -10,6 +11,7 @@ const App = () =>
       <Nav />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/groveroom" component={GroveRoom} />
       </Switch>
     </div>
   </Router>;
