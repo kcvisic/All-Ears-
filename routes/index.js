@@ -3,8 +3,8 @@ const router = require("express").Router();
 
 module.exports = function(app, passport){
   require("./api/auth")(app,passport);
-  const apiChatroom = require("./api/api-chatroom");
-  router.use("/chatroom" , apiChatroom);
+  const apiChatroom = require("./api/api-groveroom");
+  router.use("/groveroom" , apiChatroom);
   const apiYoutubeRoutes = require("./api/api-youtube");
   router.use("/youtube", apiYoutubeRoutes);
   app.use("/api", router);

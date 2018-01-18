@@ -1,5 +1,6 @@
 import React from "react";
-
+import API from "../../utils/API";
+import YouTube from "../YouTube"
 class GroveRoomForm extends React.Component {
 constructor(props){
   super(props);
@@ -7,16 +8,32 @@ constructor(props){
      song: "",
      artist: "",
      grooveRoomInput: "",
+    id: "",
    };
    this.handleInputChange = this.handleInputChange.bind(this);
 }
 
+// componentDidMount() {
+// this.loadYouTubeVideo()
+// }
 handleInputChange(event) {
   console.log("Handling Change");
   var name = event.target.name;
   this.setState({
-    [name] : event.target.value
+    [name]: event.target.value
   })
+}
+
+
+loadYouTubeVideo = () => {
+  API.getYouTubeVideo(`${this.state.song}`)
+    .then(res =>
+      this.setState({
+        id: res.data.id
+
+      })
+    )
+    .catch(err => console.log(err));
 }
 
 handleFormClose = event =>{
@@ -25,12 +42,18 @@ handleFormClose = event =>{
 
 handleFormCreate = event => {
   event.preventDefault();
-  console.log("HandleFormCreate Called");
-  console.log(this.state);
+
+  this.loadYouTubeVideo()
 }
 
 render(){
-  return ( <form>
+
+
+  return (
+
+      <div>
+        <YouTube youtube={this.state.id}/>
+    <form>
     <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
     <div className="modal-dialog">
         <div className="modal-content">
@@ -44,14 +67,14 @@ render(){
                 <label className="modal-inline-text">Enter Song</label>
                 <input  className="form-control ui-autocomplete-input"
                   onChange={this.handleInputChange}
-                  type="search"
+
                   name="song"
                   id="initialSong"/>
 
                 <label className="modal-inline-text">Enter Artist</label>
                 <input  className="form-control ui-autocomplete-input"
                   onChange={this.handleInputChange}
-                  type="search"
+
                   name="artist"
                   id="initialArtist"/>
 
@@ -84,6 +107,9 @@ render(){
         </div>
     </div>
 </form>
+
+
+</div>
 )}
 
 }

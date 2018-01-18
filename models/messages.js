@@ -17,12 +17,12 @@ module.exports = function (sequelize, Sequelize) {
 
   Messages.associate = function(models){
     Messages.belongsTo(models.User,{
-    foreignKey: {
+      foreignKey: {
       allowNull: false
     }
   });
 
-  Messages.belongsTo(models.Chatroom,{
+  Messages.belongsTo(models.GroveRoom,{
     foreignKey: {
       allowNull: false
     }
