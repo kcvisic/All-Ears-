@@ -13,5 +13,8 @@ export default {
   submitSignup:function(data){
     return axios.post('/auth/signup', data);
   },
+  getYouTubeVideo:function(keyword){
+    return axios.get('/api/youtube/search/' + keyword)
+  },
 
 };

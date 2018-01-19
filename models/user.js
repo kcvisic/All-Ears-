@@ -22,9 +22,6 @@ module.exports = function (sequelize, Sequelize) {
                type: Sequelize.TEXT
            },
 
-           about: {
-               type: Sequelize.TEXT
-           },
 
            email: {
                type: Sequelize.STRING,
@@ -50,14 +47,11 @@ module.exports = function (sequelize, Sequelize) {
 
        });
 User.associate = function(models){
-      User.hasMany(models.Messages, {
+      User.hasMany(models.Messages,{
        onDelete: "cascade"
      });
 
-    // User.belongsToMany(models.Chatrooms,{
-    //     through: "ThroughTable",
-    //
-    // })
+
 };
        return User;
 
