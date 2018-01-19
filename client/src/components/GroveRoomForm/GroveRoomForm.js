@@ -13,9 +13,10 @@ constructor(props){
    this.handleInputChange = this.handleInputChange.bind(this);
 }
 
-// componentDidMount() {
-// this.loadYouTubeVideo()
-// }
+componentDidMount() {
+this.loadYouTubeVideo()
+}
+
 handleInputChange(event) {
   console.log("Handling Change");
   var name = event.target.name;

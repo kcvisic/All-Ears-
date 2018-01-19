@@ -18,4 +18,4 @@ router.route("/search/:keyword")
       })
   });
 
-// module.exports = router;
+module.exports = router;
