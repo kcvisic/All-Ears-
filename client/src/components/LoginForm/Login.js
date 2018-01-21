@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-
+import { Redirect } from "react-router-dom";
 class Login extends React.Component{
 	constructor(props){
 		super(props);
@@ -32,11 +32,14 @@ class Login extends React.Component{
 			})
 		)
 		 .catch(err => console.log(err));
+
+			
 	}
 	render(){
 		return(
-			<form>
+			<div className="login">
 
+			<form>
 						<div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
 						    <div className="modal-dialog">
 						        <div className="modal-content">
@@ -88,6 +91,7 @@ class Login extends React.Component{
 			    </div>
 
 			</form>
+			</div>
 		)
 	}
 }

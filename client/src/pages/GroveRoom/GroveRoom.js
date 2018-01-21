@@ -16,7 +16,7 @@ state= {
       <Container>
       <Row>
           <Col size="md-12">
-          <YouTube></YouTube>
+          <YouTube/>
           </Col>
       </Row>
       </Container>

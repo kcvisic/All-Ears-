@@ -4,20 +4,33 @@ const db = require("../models");
 function generateHash(password) {
   return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
 };
+function __isAuthenticated(req){
+  const session = req.session;
+  var userAuthenticated = false;
+  if(session){
+    console.log("The session exists");
+    if(session.authenticated){
+        console.log("The session is authenticated");
+        userAuthenticated = true
+    }
+    else {
+        console.log("The session is not authenticated");
+    }
+  }
+  return userAuthenticated;
 
+}
 module.exports = {
 
+  __isAuthenticated: __isAuthenticated,
+  // we want to return either 200, or a 401
   isAuthenticated: function(req,res){
-    const session = req.session;
-    var isAuthenticated = 401;
-    if(session){
-      console.log("The session exists");
-      if(session.authenticated){
-          console.log("The session is authenticated");
-          isAuthenticated = 200;
-      }
+    var userAuthenticated = __isAuthenticated(req);
+    if(userAuthenticated){
+      res.sendStatus(200)
+    }else{
+      res.sendStatus(401)
     }
-    res.sendStatus(isAuthenticated);
   },
   signUp: function(req, res) {
     console.log("Auth controller signup called");

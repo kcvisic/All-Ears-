@@ -52,7 +52,7 @@ render(){
   return (
 
       <div>
-        <YouTube youtube={this.state.id}/>
+
     <form>
     <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
     <div className="modal-dialog">
