@@ -122,6 +122,7 @@ TITLE STYLE
 .titleWrapper {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
+  border-radius: 5px;
 }
 
 
@@ -133,7 +134,7 @@ CHATROOM STYLE
 .chat-room-main {
   max-width: 700px;
     background-color: rgba(0, 0, 0, 0.5);
-
+  
 }
 
 .chat-room-secondary {
