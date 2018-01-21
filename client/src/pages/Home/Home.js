@@ -19,9 +19,6 @@ state = {
   chatroom
 };
 
-setFriend = id => {
-  this.setState({chatroom})
-}
   render(){
     return (
       <Container>
@@ -34,10 +31,10 @@ setFriend = id => {
       
      <Row>  
          
-       {this.state.chatroom.map( chat => (
+       {this.state.chatroom.map( (chat, id) => (
             <Col size="sm-12 md-4">  
          <ChatCards
-             
+             id={chat.id}
               key={chat.id}
               name={chat.name}
               song={chat.song}

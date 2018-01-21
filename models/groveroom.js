@@ -41,5 +41,5 @@ module.exports = function (sequelize, Sequelize) {
 
 };
 
-  return  GroveRoom;
+  return GroveRoom;
 }

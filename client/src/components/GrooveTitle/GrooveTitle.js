@@ -1,10 +1,12 @@
 import React from "react";
+import API from "../../utils/API";
 
-const GrooveTitle = props => (
+
+const GrooveTitle = ({children}) => (
 
     <div className="titleWrapper text-center">
         <div>
-            <h1>Title</h1>
+            {children}
         </div>
     </div>
 
