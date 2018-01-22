@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import API from "../../utils/API";
 import YouTube from "../YouTube"
@@ -9,7 +11,6 @@ class GroveRoomForm extends React.Component {
       artist: "",
       grooveRoomInput: "",
       id: "",
-      video_id: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -17,7 +18,6 @@ class GroveRoomForm extends React.Component {
   // componentDidMount() {
   // this.loadYouTubeVideo()
   // }
-
   handleInputChange(event) {
     console.log("Handling Change");
     var name = event.target.name;
@@ -32,11 +32,10 @@ class GroveRoomForm extends React.Component {
       .then(res =>
         this.setState({
           id: res.data.id
+
         })
-        
       )
       .catch(err => console.log(err));
-      console.log(this.state.id)
   }
 
   handleFormClose = event => {
@@ -55,7 +54,7 @@ class GroveRoomForm extends React.Component {
     return (
 
       <div>
-        <YouTube youtube={this.state.id} />
+
         <form>
           <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
             <div className="modal-dialog">

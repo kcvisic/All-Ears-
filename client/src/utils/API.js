@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export default {
-
-  signIn: function (data) {
+  authenticated:function(){
+    return axios.get("/auth/authenticated")
+  },
+  signIn:function(data){
     return axios.post('/auth/signin', data);
   },
 

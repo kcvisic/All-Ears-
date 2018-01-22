@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
 
 class SignUp extends React.Component {
   constructor(props){
@@ -38,16 +39,22 @@ class SignUp extends React.Component {
         username:this.state.username,
         password:this.state.password,
         confirmPassword:this.state.confirmPassword
+
       })
 
     )
     .catch(err => console.log(err));
+      window.location.reload()
   };
 
 
   render(){
     return(
+      <div className="signup">
+
+
       <form>
+
       <div className="modal fade" id="signUpModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
     	   <div className="modal-dialog">
     	     <div className="modal-content">
@@ -125,6 +132,7 @@ class SignUp extends React.Component {
               className="btn btn-primary"
               id="signUpButton"
               onClick={this.handleFormSubmit}
+
                 data-dismiss="modal">Sign Up</button>
                 </div>
               </div>
@@ -133,7 +141,7 @@ class SignUp extends React.Component {
         </div>
     </div>
     </form>
-
+</div>
     )
   }
 }

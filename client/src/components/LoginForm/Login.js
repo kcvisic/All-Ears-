@@ -1,8 +1,8 @@
 import React from "react";
 import API from "../../utils/API";
-
-class Login extends React.Component {
-	constructor(props) {
+import { Redirect } from "react-router-dom";
+class Login extends React.Component{
+	constructor(props){
 		super(props);
 		this.state = {
 			username: "",
@@ -25,26 +25,29 @@ class Login extends React.Component {
 	handleFormLogin = event => {
 		event.preventDefault();
 		API.signIn(this.state)
-			.then(res =>
-				this.setState({
-					username: this.state.username,
-					password: this.state.password,
-				})
-			)
-			.catch(err => console.log(err));
-	}
-	render() {
-		return (
-			<form>
+		.then( res =>
+			this.setState({
+				username:this.state.username,
+				password:this.state.password,
+			})
+		)
+		 .catch(err => console.log(err));
 
-				<div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
-					<div className="modal-dialog">
-						<div className="modal-content">
-							<div className="modal-header">
-								<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 className="modal-title modal-inline-text">Login</h4>
-								<div className="modal-body">
-									<div className="form-group">
+			
+	}
+	render(){
+		return(
+			<div className="login">
+
+			<form>
+						<div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
+						    <div className="modal-dialog">
+						        <div className="modal-content">
+						            <div className="modal-header">
+						                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						                <h4 className="modal-title modal-inline-text">Login</h4>
+			  <div className="modal-body">
+			  <div className="form-group">
 
 										<label className="modal-inline-text">Username</label>
 										<input className="form-control"
@@ -88,6 +91,7 @@ class Login extends React.Component {
 				</div>
 
 			</form>
+			</div>
 		)
 	}
 }
