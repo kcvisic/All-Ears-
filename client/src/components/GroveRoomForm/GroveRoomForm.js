@@ -8,14 +8,13 @@ constructor(props){
      song: "",
      artist: "",
      grooveRoomInput: "",
-    id: "",
+     video_id: "",
+
    };
    this.handleInputChange = this.handleInputChange.bind(this);
 }
 
-// componentDidMount() {
-// this.loadYouTubeVideo()
-// }
+
 handleInputChange(event) {
   console.log("Handling Change");
   var name = event.target.name;
@@ -25,16 +24,6 @@ handleInputChange(event) {
 }
 
 
-loadYouTubeVideo = () => {
-  API.getYouTubeVideo(`${this.state.song}`)
-    .then(res =>
-      this.setState({
-        id: res.data.id
-
-      })
-    )
-    .catch(err => console.log(err));
-}
 
 handleFormClose = event =>{
   console.log("handleFormClose called");
@@ -42,9 +31,23 @@ handleFormClose = event =>{
 
 handleFormCreate = event => {
   event.preventDefault();
+  API.getYouTubeVideo(`${this.state.song}`)
+    .then(res =>
+      this.setState({
+      video_id: res.data.id
+      })
+    )
+    .then(res =>   API.saveGrooveRoomForm({
+        song: this.state.song,
+        artist: this.state.artist,
+        video_id:this.state.video_id,
+        grooveRoomInput:this.state. grooveRoomInput,
 
-  this.loadYouTubeVideo()
-}
+      }).catch(function(err){
+        console.log(err);
+      })
+
+)}
 
 render(){
 

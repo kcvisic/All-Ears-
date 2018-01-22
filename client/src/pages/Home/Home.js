@@ -4,11 +4,11 @@ import SignUp from "../../components/SignInForm";
 import Login from "../../components/LoginForm";
 import GroveRoomForm from "../../components/GroveRoomForm";
 import { Col, Row, Container } from "../../components/Grid";
-import { List } from "../../components/List";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
+import ChatCards from "../../components/ChatCards";
 import YouTube from "../../components/YouTube";
-// import Toggle from "../../components/Toggle";
+
 
 class Home extends Component {
 
@@ -22,7 +22,7 @@ state= {
       <Row>
           <Col size="md-12">
       <Jumbotron>
-
+      <GroveRoomForm/>
       </Jumbotron>
           </Col>
       </Row>

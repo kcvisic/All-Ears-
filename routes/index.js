@@ -22,8 +22,8 @@ module.exports = function(app, passport){
       res.sendStatus(401);
     }
   })
-  const apiChatroom = require("./api/api-groveroom");
-  router.use("/groveroom" , apiChatroom);
+  const groveroom = require("./api/api-groveroom");
+  router.use("/grooveroom" , groveroom);
   const apiYoutubeRoutes = require("./api/api-youtube");
   router.use("/youtube", apiYoutubeRoutes);
   app.use("/api", router);

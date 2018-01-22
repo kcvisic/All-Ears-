@@ -1,13 +1,12 @@
 const axios = require("axios");
 const router = require("express").Router();
-const db = require("../../models");
 
+const grooveController = require("../../controllers/grooveroom")
 
+router.route("/:id")
+    .get(grooveController.findById);
 
-
-router.get("/groveroom", function(req, res) {
-
-
-})
+router.route("/create")
+    .post(grooveController.create)
 
 module.exports = router;
