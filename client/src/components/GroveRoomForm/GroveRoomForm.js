@@ -4,54 +4,57 @@ import React from "react";
 import API from "../../utils/API";
 import YouTube from "../YouTube"
 class GroveRoomForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      song: "",
-      artist: "",
-      grooveRoomInput: "",
-      id: "",
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
+constructor(props){
+  super(props);
+   this.state = {
+     song: "",
+     artist: "",
+     grooveRoomInput: "",
+     video_id: "",
 
-  // componentDidMount() {
-  // this.loadYouTubeVideo()
-  // }
-  handleInputChange(event) {
-    console.log("Handling Change");
-    var name = event.target.name;
-    this.setState({
-      [name]: event.target.value
-    })
-  }
+   };
+   this.handleInputChange = this.handleInputChange.bind(this);
+}
 
 
-  loadYouTubeVideo = () => {
-    API.getYouTubeVideo(`${this.state.song}`)
-      .then(res =>
-        this.setState({
-          id: res.data.id
-
-        })
-      )
-      .catch(err => console.log(err));
-  }
-
-  handleFormClose = event => {
-    console.log("handleFormClose called");
-  }
-
-  handleFormCreate = event => {
-    event.preventDefault();
-
-    this.loadYouTubeVideo()
-  }
-
-  render() {
+handleInputChange(event) {
+  console.log("Handling Change");
+  var name = event.target.name;
+  this.setState({
+    [name]: event.target.value
+  })
+}
 
 
-    return (
+
+handleFormClose = event =>{
+  console.log("handleFormClose called");
+}
+
+handleFormCreate = event => {
+  event.preventDefault();
+  API.getYouTubeVideo(`${this.state.song}`)
+    .then(res =>
+      this.setState({
+      video_id: res.data.id
+      })
+    )
+    .then(res =>   API.saveGrooveRoomForm({
+        song: this.state.song,
+        artist: this.state.artist,
+        video_id:this.state.video_id,
+        grooveRoomInput:this.state. grooveRoomInput,
+
+      }).catch(function(err){
+        console.log(err);
+      })
+
+)}
+
+render(){
+
+
+  return (
 
       <div>
 

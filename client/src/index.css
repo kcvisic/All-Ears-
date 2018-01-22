@@ -193,7 +193,7 @@ CHATROOM STYLE
 YOUTUBE STYLE
 ****************/
 .youtube-holder {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(156, 92, 92, 0.3);
   margin: 10px auto;
   padding: 15px;
   height: 400px;
@@ -210,7 +210,7 @@ CHAT-ROOM STYLE
 ****************/
 
 .chat-mod {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color:rgba(156, 92, 92, 0.3);
   border-radius: 5%;
   margin: 10px auto;
   padding: 15px;
