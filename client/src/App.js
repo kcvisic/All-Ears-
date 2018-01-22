@@ -1,9 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link,  Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import GroveRoom from "./pages/GroveRoom";
-import ChatCards from "./components/ChatCards"
-import UserDashBoard from "./pages/UserDashBoard";
 
 import Nav from "./components/Nav";
 

@@ -11,9 +11,9 @@ import YouTube from "../../components/YouTube";
 
 class Home extends Component {
 
-state = {
-  chatroom
-};
+// state = {
+//   chatroom
+// };
 
   render(){
     return (
@@ -25,7 +25,7 @@ state = {
       </Jumbotron>
           </Col>
       </Row>
-      
+{/*       
      <Row>  
          
        {this.state.chatroom.map( (chat, id) => (
@@ -40,7 +40,7 @@ state = {
             </Col>
               ))}   
           
-        </Row>      
+        </Row>       */}
       </Container>
     )
   }

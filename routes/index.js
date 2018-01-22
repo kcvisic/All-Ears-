@@ -1,10 +1,10 @@
 const path = require("path");
 const router = require("express").Router();
 const authController = require("../controllers/authcontroller");
-module.exports = function(app, passport){
+module.exports = function (app, passport) {
 
   //all auth routes are under '/auth/....'
-  require("./api/auth")(app,passport);
+  require("./api/auth")(app, passport);
 
   // enforce a user to be logged into the session in order to
   // actually hit any of our designated '/api/...' routes
@@ -13,17 +13,17 @@ module.exports = function(app, passport){
   //validate the request, if request is oky, we can use next() method to
   // allow router to proceed. Else if it fails then we need to send a response back,
   //and disable the router to proceede.
-  router.use(function(req,res,next){
+  router.use(function (req, res, next) {
     console.log(req.session)
     const userAuthenticated = authController.__isAuthenticated(req);
-    if(userAuthenticated){
+    if (userAuthenticated) {
       next();
-    }else{
+    } else {
       res.sendStatus(401);
     }
   })
   const groveroom = require("./api/api-groveroom");
-  router.use("/grooveroom" , groveroom);
+  router.use("/grooveroom", groveroom);
   const apiYoutubeRoutes = require("./api/api-youtube");
   router.use("/youtube", apiYoutubeRoutes);
   app.use("/api", router);

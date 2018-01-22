@@ -4,17 +4,17 @@ const db = require("../models");
 function generateHash(password) {
   return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
 };
-function __isAuthenticated(req){
+function __isAuthenticated(req) {
   const session = req.session;
   var userAuthenticated = false;
-  if(session){
+  if (session) {
     console.log("The session exists");
-    if(session.authenticated){
-        console.log("The session is authenticated");
-        userAuthenticated = true
+    if (session.authenticated) {
+      console.log("The session is authenticated");
+      userAuthenticated = true
     }
     else {
-        console.log("The session is not authenticated");
+      console.log("The session is not authenticated");
     }
   }
   return userAuthenticated;
@@ -24,15 +24,15 @@ module.exports = {
 
   __isAuthenticated: __isAuthenticated,
   // we want to return either 200, or a 401
-  isAuthenticated: function(req,res){
+  isAuthenticated: function (req, res) {
     var userAuthenticated = __isAuthenticated(req);
-    if(userAuthenticated){
+    if (userAuthenticated) {
       res.sendStatus(200)
-    }else{
+    } else {
       res.sendStatus(401)
     }
   },
-  signUp: function(req, res) {
+  signUp: function (req, res) {
     console.log("Auth controller signup called");
     console.log(req.body);
     const email = req.body.email;
@@ -40,7 +40,7 @@ module.exports = {
       where: {
         email: email,
       }
-    }).then(function(user) {
+    }).then(function (user) {
       // if we found  user, return an error...
       if (user) {
         console.log("The email was already taken");
@@ -54,7 +54,7 @@ module.exports = {
           firstname: req.body.firstname,
           lastname: req.body.lastname
         };
-        db.User.create(userData).then(function(newUser) {
+        db.User.create(userData).then(function (newUser) {
           if (!newUser) {
             console.log("Failed to create user");
             res.sendStatus(400)
@@ -67,9 +67,9 @@ module.exports = {
       }
     });
   },
-  logout: function(req, res) {
+  logout: function (req, res) {
     console.log("Auth controller logout called");
-    req.session.destroy(function(){
+    req.session.destroy(function () {
       res.sendStatus(200);
     })
 
