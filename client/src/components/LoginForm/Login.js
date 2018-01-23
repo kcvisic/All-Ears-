@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-import { Redirect } from "react-router-dom";
+import {  withRouter } from "react-router-dom";
 class Login extends React.Component{
 	constructor(props){
 		super(props);
@@ -31,10 +31,15 @@ class Login extends React.Component{
 				password:this.state.password,
 			})
 		)
-		 .catch(err => console.log(err));
-		
+		 .then( res =>{
+			 this.props.history.push({
+				 pathname: `/home`
+			 })
+		 })
 
+		 .catch(err => console.log(err));
 	}
+	
 	render(){
 		return(
 			<div className="login">
@@ -95,4 +100,4 @@ class Login extends React.Component{
 		)
 	}
 }
-export default Login
+export default  withRouter (Login);

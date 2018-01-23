@@ -1,6 +1,7 @@
 import React from "react";
 import API from "../../utils/API";
 import YouTube from "../YouTube"
+import { withRouter } from 'react-router-dom'
 class GroveRoomForm extends React.Component {
 constructor(props){
   super(props);
@@ -31,21 +32,27 @@ handleFormClose = event =>{
 
 handleFormCreate = event => {
   event.preventDefault();
-  API.getYouTubeVideo(`${this.state.song}`)
+  API.getYouTubeVideo(`${this.state.song} ${this.state.artist}`)
     .then(res =>
       this.setState({
       video_id: res.data.id
       })
     )
-    .then(res =>   API.saveGrooveRoomForm({
+    .then(res => API.saveGrooveRoomForm({
         song: this.state.song,
         artist: this.state.artist,
         video_id:this.state.video_id,
         grooveRoomInput:this.state. grooveRoomInput,
-
-      }).catch(function(err){
-        console.log(err);
+    })
+   .then(res => {
+    const grooveroomId = res.data.id;
+      this.props.history.push({
+        pathname: `/grooveroom/${grooveroomId}`,
+        state: {roomInfo: res.data},
       })
+
+   })
+
 
 )}
 
@@ -116,4 +123,5 @@ render(){
 )}
 
 }
-export default GroveRoomForm;
+export default withRouter(GroveRoomForm);
+// export default GroveRoomForm;

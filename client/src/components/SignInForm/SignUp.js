@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-
+import {  withRouter } from "react-router-dom";
 
 class SignUp extends React.Component {
   constructor(props){
@@ -43,8 +43,13 @@ class SignUp extends React.Component {
       })
 
     )
+    .then( res =>{
+      this.props.history.push({
+        pathname: `/home`
+      })
+    })
     .catch(err => console.log(err));
-      window.location.reload()
+    
   };
 
 
@@ -145,4 +150,4 @@ class SignUp extends React.Component {
     )
   }
 }
-export default SignUp;
+export default withRouter (SignUp);
