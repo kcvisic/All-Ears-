@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router";
 import API from "../../utils/API";
 import YouTube from "../YouTube"
 class GroveRoomForm extends React.Component {
@@ -9,9 +10,12 @@ class GroveRoomForm extends React.Component {
       artist: "",
       grooveRoomInput: "",
       video_id: "",
-
+      id: "",
+      redirect: false,
+      grooveroom: {}
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+
   }
 
 
@@ -42,18 +46,33 @@ class GroveRoomForm extends React.Component {
         artist: this.state.artist,
         video_id: this.state.video_id,
         grooveRoomInput: this.state.grooveRoomInput,
-
-      }).catch(function (err) {
+      })).then(() => this.setState({redirect: true}))
+      .catch(function (err) {
         console.log(err);
       })
 
+      
+  }
+
+  loadChatRoom = () => {
+    API.getChatRoom(this.props.match.params.id)
+      .then(res => this.setState({ grooveroom: res.data })
       )
+      .catch(err => console.log(err));
+
   }
 
   render() {
+  
+    const { redirect } = this.state
 
+    if(redirect) {
+      return <Redirect to="/grooveroom/:id" />
+    }
+    
 
     return (
+       
 
       <div>
 
@@ -106,6 +125,9 @@ class GroveRoomForm extends React.Component {
                     className="btn btn-primary"
                     id="createGrooveRoom"
                     data-dismiss="modal">Create</button>
+                    
+                   
+                  
                 </div>
               </div>
             </div>

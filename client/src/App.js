@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {Redirect} from "react-router"
 import Home from "./pages/Home";
 import GroveRoom from "./pages/GroveRoom";
-
+import API from "./utils/API"
 import Nav from "./components/Nav";
 
 const App = () =>

@@ -1,3 +1,4 @@
+
 const axios = require("axios");
 const db = require("../models");
 const bodyParser = require("body-parser");
@@ -27,9 +28,11 @@ module.exports = {
        video_id: req.body.video_id,
        artist: req.body.artist,
        creator_id: req.session.passport.user})
-       .then(function(groveRoom) {
-         res.send(groveRoom);
-    }).catch(function(err){
+       .then(function(dbGroveRoom) {
+         console.log(dbGroveRoom.id)
+         res.send(dbGroveRoom)
+      })
+    .catch(function(err){
         res.status(401).json(err)
     })
 

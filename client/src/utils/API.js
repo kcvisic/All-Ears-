@@ -22,7 +22,11 @@ export default {
   return axios.get('/api/grooveroom/' + id);
 },
   saveGrooveRoomForm: function(data) {
-  return axios.post("/api/grooveroom/create", data);
-}
+    return axios.post("/api/grooveroom/create", data)
+    },
+  redirect: function(id) {
+    return axios.get("/grooveroom/" + id)
+  }
+
 
 };
