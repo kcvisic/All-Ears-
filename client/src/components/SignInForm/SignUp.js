@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-
+import {  withRouter } from "react-router-dom";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -31,20 +31,25 @@ class SignUp extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     API.submitSignup(this.state)
-      .then(res =>
-        this.setState({
-          email: this.state.email,
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
-          username: this.state.username,
-          password: this.state.password,
-          confirmPassword: this.state.confirmPassword
+    .then(res =>
+      this.setState({
+        email:this.state.email,
+        firstname:this.state.firstname,
+        lastname:this.state.lastname,
+        username:this.state.username,
+        password:this.state.password,
+        confirmPassword:this.state.confirmPassword
 
-        })
+      })
 
-      )
-      .catch(err => console.log(err));
-    window.location.reload()
+    )
+    .then( res =>{
+      this.props.history.push({
+        pathname: `/home`
+      })
+    })
+    .catch(err => console.log(err));
+    
   };
 
 
@@ -145,4 +150,4 @@ class SignUp extends React.Component {
     )
   }
 }
-export default SignUp;
+export default withRouter (SignUp);

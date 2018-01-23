@@ -2,73 +2,64 @@ import React from "react";
 import { Redirect } from "react-router";
 import API from "../../utils/API";
 import YouTube from "../YouTube"
+import { withRouter } from 'react-router-dom'
 class GroveRoomForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      song: "",
-      artist: "",
-      grooveRoomInput: "",
-      video_id: "",
-      id: "",
-      redirect: false,
-      grooveroom: {}
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
+constructor(props){
+  super(props);
+   this.state = {
+     song: "",
+     artist: "",
+     grooveRoomInput: "",
+     video_id: "",
 
-  }
+   };
+   this.handleInputChange = this.handleInputChange.bind(this);
+}
 
 
-  handleInputChange(event) {
-    console.log("Handling Change");
-    var name = event.target.name;
-    this.setState({
-      [name]: event.target.value
-    })
-  }
+handleInputChange(event) {
+  console.log("Handling Change");
+  var name = event.target.name;
+  this.setState({
+    [name]: event.target.value
+  })
+}
 
 
 
-  handleFormClose = event => {
-    console.log("handleFormClose called");
-  }
+handleFormClose = event =>{
+  console.log("handleFormClose called");
+}
 
-  handleFormCreate = event => {
-    event.preventDefault();
-    API.getYouTubeVideo(`${this.state.song}`)
-      .then(res =>
-        this.setState({
-          video_id: res.data.id
-        })
-      )
-      .then(res => API.saveGrooveRoomForm({
+handleFormCreate = event => {
+  event.preventDefault();
+  API.getYouTubeVideo(`${this.state.song} ${this.state.artist}`)
+    .then(res =>
+      this.setState({
+      video_id: res.data.id
+      })
+    )
+    .then(res => API.saveGrooveRoomForm({
         song: this.state.song,
         artist: this.state.artist,
-        video_id: this.state.video_id,
-        grooveRoomInput: this.state.grooveRoomInput,
-      })).then(() => this.setState({redirect: true}))
-      .catch(function (err) {
-        console.log(err);
+        video_id:this.state.video_id,
+        grooveRoomInput:this.state. grooveRoomInput,
+    })
+   .then(res => {
+    const grooveroomId = res.data.id;
+      this.props.history.push({
+        pathname: `/grooveroom/${grooveroomId}`,
+        state: {roomInfo: res.data},
       })
 
-      
-  }
+   })
 
-  loadChatRoom = () => {
-    API.getChatRoom(this.props.match.params.id)
-      .then(res => this.setState({ grooveroom: res.data })
-      )
-      .catch(err => console.log(err));
 
-  }
+)}
+
 
   render() {
   
-    const { redirect } = this.state
-
-    if(redirect) {
-      return <Redirect to="/grooveroom/:id" />
-    }
     
 
     return (
@@ -140,4 +131,5 @@ class GroveRoomForm extends React.Component {
   }
 
 }
-export default GroveRoomForm;
+export default withRouter(GroveRoomForm);
+// export default GroveRoomForm;

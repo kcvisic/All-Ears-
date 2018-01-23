@@ -10,34 +10,40 @@ import GrooveTitle from "../../components/GrooveTitle"
 
 
 class GroveRoom extends Component {
+roomInfo = arguments[0].location.state.roomInfo
 state = {
-  grooveroom: {}
+  grooveroom: this.roomInfo.name,
+  video_id:  this.roomInfo.video_id,
+  creator_id: this.roomInfo.creator_id,
+  song: this.roomInfo.song,
+  artist: this.roomInfo.artist,
+  room_id: this.roomInfo.id,
 };
 
-componentDidMount() {
- this.loadChatRoom();
-};
+// componentDidMount() {
+//  this.loadChatRoom();
+// };
 
-loadChatRoom = () => {
-  API.getChatRoom(this.props.match.params.id)
-    .then(res => this.setState({ grooveroom: res.data})
-  )
-    .catch(err => console.log(err));
- 
-}
+// loadChatRoom = () => {
+//   API.getChatRoom(this.state.video_id)
+//     .then(res => this.setState({ grooveroo:})
+//   )
+//     .catch(err => console.log(err));
+//
+// }
   render(){
     return(
       <Container>
         <Row>
           <Col size="md-12">
           <GrooveTitle>
-            <h1>{this.state.grooveroom.name}</h1>
+            <h1>{this.state.grooveroom}</h1>
             </GrooveTitle></Col>
         </Row>
       <Row>
           <Col size="sm-12 md-12 lg-6">
           <YouTube>
-              <iframe className="youtube" width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.grooveroom.video_id} frameborder="0" allowfullscreen></iframe>
+              <iframe className="youtube" width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.video_id} frameborder="0" allowfullscreen></iframe>
           </YouTube>
           </Col> 
           <Col size="sm-12 md-12 lg-6">

@@ -1,8 +1,8 @@
 import React from "react";
 import API from "../../utils/API";
-import { Redirect } from "react-router-dom";
-class Login extends React.Component {
-	constructor(props) {
+import {  withRouter } from "react-router-dom";
+class Login extends React.Component{
+	constructor(props){
 		super(props);
 		this.state = {
 			username: "",
@@ -25,18 +25,23 @@ class Login extends React.Component {
 	handleFormLogin = event => {
 		event.preventDefault();
 		API.signIn(this.state)
-			.then(res =>
-				this.setState({
-					username: this.state.username,
-					password: this.state.password,
-				})
-			)
-			.catch(err => console.log(err));
+		.then( res =>
+			this.setState({
+				username:this.state.username,
+				password:this.state.password,
+			})
+		)
+		 .then( res =>{
+			 this.props.history.push({
+				 pathname: `/home`
+			 })
+		 })
 
-
+		 .catch(err => console.log(err));
 	}
-	render() {
-		return (
+	
+	render(){
+		return(
 			<div className="login">
 
 				<form>
@@ -95,4 +100,4 @@ class Login extends React.Component {
 		)
 	}
 }
-export default Login
+export default  withRouter (Login);
