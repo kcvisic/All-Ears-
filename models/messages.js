@@ -1,9 +1,8 @@
 module.exports = function (sequelize, Sequelize) {
     var Messages = sequelize.define("Messages", {
 
-      name: {
+      message: {
        type: Sequelize.TEXT,
-        allowNull: false,
         validate: {
           len: [1, 150]
         }
