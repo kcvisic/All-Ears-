@@ -7,6 +7,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import ChatWindow from "../../components/ChatWindow"
 import GrooveTitle from "../../components/GrooveTitle"
+import Welcome from "../../components/Welcome"
 
 class DashBoard extends Component {
   state= {
@@ -18,7 +19,7 @@ class DashBoard extends Component {
         <Container>
         <Row>
             <Col size="md-12">
-    
+              <Welcome></Welcome>
             </Col>
         </Row>
         </Container>

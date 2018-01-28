@@ -20,6 +20,16 @@ module.exports = {
       console.log(dbGroveroom)
     })
   },
+  
+  findAll: function(req, res) {
+    const id = req.params.id
+    db.GroveRoom.findAll({
+      where :{
+        id: id
+      }
+    })
+    },
+
   create: function(req, res) {
     console.log(req.session.passport.user);
     db.GroveRoom.create({

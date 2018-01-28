@@ -3,6 +3,9 @@ const router = require("express").Router();
 
 const grooveController = require("../../controllers/grooveroom")
 
+router.route("/home")
+.get(grooveController.findAll);
+
 router.route("/:id")
     .get(grooveController.findById);
 
