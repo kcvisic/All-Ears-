@@ -12,6 +12,7 @@ constructor(props){
   super(props);
   this.handleInputChange = this.handleInputChange.bind(this);
   this.setRoomInfo = this.setRoomInfo.bind(this);
+  // this.handleMessagesRetreval = this.handleMessagesRetreval.bind(this);
   this.state = {
     grooveroom: "",
     video_id:  "",
@@ -26,7 +27,7 @@ constructor(props){
 }
 
 componentWillMount(){
-    var roomInfo = null;
+    let roomInfo = null;
     try {
       roomInfo = arguments[0].location.state.roomInfo
     }
@@ -38,6 +39,9 @@ componentWillMount(){
       API.getGrooveRoomInfo(this.props.match.params.id)
         .then(function(res){
           component.setRoomInfo(res.data);
+        })
+        .then(function(){
+          // this.handleMessagesRetreval();
         })
     }
     else {
@@ -87,6 +91,7 @@ handleFormSubmit = event => {
   event.preventDefault();
   this.handleMessageCreation();
   this.handleMessagesRetreval();
+  this.refs.fieldName.value="";
 
 
 };
@@ -117,16 +122,13 @@ handleFormSubmit = event => {
                   <div className="chat-mod">
                       <div className="chatbox">
                           <div className="chatlogs">
-                              <div className="chat friend">
-                                  <p className="chat-message">This song is awesome</p>
-                              </div>
                               <div className = "messages">
                               <div className="chat self">
                                   <ul>
                                     {
-                                      this.state.returnMessages.forEach(function(el,index,array){
-                                        return <li>{el.message}</li>
-                                      })
+                                      this.state.returnMessages.map( el=> (
+                        <p key={el.message} className="chat-message">{el.message}</p>
+                                    )  )
                                     }
                                   </ul>
                               </div>
@@ -137,6 +139,7 @@ handleFormSubmit = event => {
                             onChange={this.handleInputChange}
                               type="text"
                               name="message"
+                               ref="fieldName"
                               />
 
                             <button  type="button" onClick={this.handleFormSubmit}>Send</button>

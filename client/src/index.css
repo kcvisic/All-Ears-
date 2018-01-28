@@ -282,7 +282,7 @@ CHAT-ROOM STYLE
 }
 
 .self .chat-message {
-  background: #1ddced;
+  background: #0d858e;
   order: -1;
 
 }
@@ -319,7 +319,7 @@ CHAT-ROOM STYLE
 }
 
 .chat-form button {
-  background: #1ddced;
+  background: #0d858e;
   padding: 5px 15px;
   font-size: 2em;
   color: #fff;
