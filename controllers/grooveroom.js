@@ -22,7 +22,11 @@ module.exports = {
   },
   create: function(req, res) {
     console.log(req.session.passport.user);
-    db.GroveRoom.create({name: req.body.grooveRoomInput, song: req.body.song, video_id: req.body.video_id, artist: req.body.artist, creator_id: req.session.passport.user}).then(function(groveRoom) {
+    db.GroveRoom.create({name: req.body.grooveRoomInput,
+      song:req.body.song, video_id: req.body.video_id,
+      artist:req.body.artist,
+      creator_id:req.session.passport.user})
+      .then(function(groveRoom) {
       res.send(groveRoom);
     }).catch(function(err) {
       res.status(401).json(err)
@@ -30,7 +34,10 @@ module.exports = {
   },
 
   createMsg: function(req, res) {
-    db.Messages.create({message: req.body.message, GroveRoomId: req.body.room_Id, UserId: req.session.passport.user}).then(function(groveRoomMessage) {
+    db.Messages.create({message: req.body.message,
+      GroveRoomId: req.body.room_Id,
+      UserId: req.session.passport.user})
+      .then(function(groveRoomMessage) {
       res.send(groveRoomMessage)
     }).catch(function(err) {
       res.status(401).json(err)
@@ -42,7 +49,8 @@ module.exports = {
     db.Messages.findAll({
       where: {
         GroveRoomId: req.query.groveroomId
-      }
+      },
+    
     }).then(function(groveroomMessages) {
       res.send(groveroomMessages)
     }).catch(function(err) {

@@ -3,27 +3,60 @@ import React, { Component } from "react";
 import YouTube from "../../components/YouTube";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-
 import GrooveTitle from "../../components/GrooveTitle"
 
 
 class GroveRoom extends React.Component {
-roomInfo = arguments[0].location.state.roomInfo
-constructor(props){  super(props);
-this.state = {
-  grooveroom: this.roomInfo.name,
-  video_id:  this.roomInfo.video_id,
-  creator_id: this.roomInfo.creator_id,
-  song: this.roomInfo.song,
-  artist: this.roomInfo.artist,
-  room_id: this.roomInfo.id,
-  message:"",
-  returnMessages:{},
-};
-this.handleInputChange = this.handleInputChange.bind(this);
+
+constructor(props){
+  super(props);
+  this.handleInputChange = this.handleInputChange.bind(this);
+  this.setRoomInfo = this.setRoomInfo.bind(this);
+  this.state = {
+    grooveroom: "",
+    video_id:  "",
+    creator_id: "",
+    song: "",
+    artist: "",
+    room_id: "",
+    message:"",
+    returnMessages:[],
+  }
 
 }
 
+componentWillMount(){
+    var roomInfo = null;
+    try {
+      roomInfo = arguments[0].location.state.roomInfo
+    }
+    catch(err){
+      roomInfo = null;
+    }
+    var component = this;
+    if(roomInfo === null || roomInfo === undefined){
+      API.getGrooveRoomInfo(this.props.match.params.id)
+        .then(function(res){
+          component.setRoomInfo(res.data);
+        })
+    }
+    else {
+      this.setRoomInfo(roomInfo);
+    }
+}
+
+setRoomInfo(roomInfo){
+  this.setState({
+    grooveroom: roomInfo.name,
+    video_id:  roomInfo.video_id,
+    creator_id: roomInfo.creator_id,
+    song: roomInfo.song,
+    artist: roomInfo.artist,
+    room_id: roomInfo.id,
+    message:"",
+    returnMessages:[],
+  });
+}
 
 handleInputChange = event => {
   console.log("Handling Change")
@@ -40,11 +73,12 @@ handleMessageCreation = () => {
   })  .catch(err => console.log(err));
 }
 handleMessagesRetreval = () => {
-  API.getGrooveRoomMessages({
-    groveroomId:this.state.room_id,
-  }).then(res =>
-  this.setState({
-    returnMessages:res.body,
+  API.getGrooveRoomMessages(
+    this.state.room_id
+  )
+  .then(res =>
+    this.setState({
+    returnMessages:res.data
 
   })).catch(err => console.log(err));
 }
@@ -53,11 +87,13 @@ handleFormSubmit = event => {
   event.preventDefault();
   this.handleMessageCreation();
   this.handleMessagesRetreval();
-  console.log(this.returnMessages)
+
+
 };
 
 
   render(){
+
 
 
     return(
@@ -84,8 +120,16 @@ handleFormSubmit = event => {
                               <div className="chat friend">
                                   <p className="chat-message">This song is awesome</p>
                               </div>
+                              <div className = "messages">
                               <div className="chat self">
-                                  <p className="chat-message"></p>
+                                  <ul>
+                                    {
+                                      this.state.returnMessages.forEach(function(el,index,array){
+                                        return <li>{el.message}</li>
+                                      })
+                                    }
+                                  </ul>
+                              </div>
                               </div>
                           </div>
                           <form className="chat-form">

@@ -18,8 +18,8 @@ export default {
   getYouTubeVideo: function(keyword) {
     return axios.get('/api/youtube/search/' + keyword);
   },
-  getChatRoom: function(id) {
-    return axios.get('/api/grooveroom/room' + id);
+  getGrooveRoomInfo: function(id) {
+    return axios.get('/api/grooveroom/room/' + id);
   },
   saveGrooveRoomForm: function(data) {
     return axios.post("/api/grooveroom/create", data);

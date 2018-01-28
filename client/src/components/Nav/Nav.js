@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 import SignUp from "../SignInForm"
 import Login from "../LoginForm"
+import Logout from "../Logout"
 import API from "../../utils/API";
 import { Route, Redirect } from 'react-router'
-// import Toggle from "../Toggle"
+
 
 class Nav extends React.Component{
 constructor(props){
@@ -13,12 +14,26 @@ constructor(props){
   this.state={
     authenticate: false,
   }
+  this.callbackSuccessLogin = this.callbackSuccessLogin.bind(this);
+  this.callbackSuccessLogout = this.callbackSuccessLogout.bind(this);
 }
 
+callbackSuccessLogin(){
+  this.setState({authenticate: true})
+}
+
+callbackSuccessLogout(){
+  this.setState({
+    authenticate: false
+  })
+}
+
+
+
 componentDidMount(){
-    API.authenticated()
-      .then(res => this.setState({ authenticate : true}))
-      .catch(err => console.log(err));
+  API.authenticated()
+    .then(res => this.setState({ authenticate : true}))
+    .catch(err => console.log(err));
 }
 
 render(){
@@ -39,14 +54,15 @@ return(
 	    </div>
 	    <div className="collapse navbar-collapse">
 	      <ul className="nav navbar-nav">
-	        <li className="active"><a href="#">Home</a></li>
 	        <li><a href="#">About</a></li>
 	      </ul>
 	      <ul className="nav navbar-nav navbar-right">
 	      {
           this.state.authenticate ?
           (
-              <li><a id="signOutButton"><span className="glyphicon glyphicon-log-out"></span> Sign out</a></li>
+              <li><a  data-toggle="modal" data-target="#signOutButton"><span className="glyphicon glyphicon-log-out"></span> Sign out</a>
+              <Logout callbackSuccessLogout={this.callbackSuccessLogout}/>
+          </li>
           )
           :
           (
@@ -57,7 +73,7 @@ return(
                 </li>,
                 <li>
                   <a data-toggle="modal" data-target="#signUpModal"><span className="glyphicon glyphicon-user"></span> Sign Up</a>
-                  <Login />
+                  <Login callbackSuccessLogin={this.callbackSuccessLogin}/>
                 </li>
              ]
           )
@@ -68,7 +84,6 @@ return(
 						<label className="switch">
 						  <input type="checkbox" id="darkModeSlider"/>
 						  <span className="slider round"></span>
-
 						</label>
 					</span>
 				</a>

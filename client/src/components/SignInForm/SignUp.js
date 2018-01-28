@@ -29,7 +29,7 @@ class SignUp extends React.Component {
   }
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    // event.preventDefault();
     API.submitSignup(this.state)
     .then(res =>
       this.setState({
@@ -49,7 +49,7 @@ class SignUp extends React.Component {
       })
     })
     .catch(err => console.log(err));
-    
+
   };
 
 
