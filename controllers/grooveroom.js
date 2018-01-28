@@ -23,11 +23,15 @@ module.exports = {
   },
   
   findAll: function(req, res) {
-    const id = req.params.id
     db.GroveRoom.findAll({
-      where :{
-        id: id
-      }
+      id: req.query.id
+    })
+    .then(function(dbGroveroom){
+      console.log(dbGroveroom)
+      res.send(dbGroveroom)
+    })
+    .catch(function(err){
+      res.status(401).json(err)
     })
     },
 

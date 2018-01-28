@@ -14,4 +14,7 @@ router.route("/create")
 router.route("/message")
     .post(grooveController.createMsg)
 
+    router.route("/room")
+    .get(grooveController.findAll);
+
 module.exports = router;

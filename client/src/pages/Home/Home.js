@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import GroveRoomForm from "../../components/GroveRoomForm";
 import { Col, Row, Container } from "../../components/Grid";
-
+import API from "../../utils/API"
+import ChatCards from "../../components/ChatCards"
 class Home extends Component {
 
 state = {
-  grooverooms: [],
-id: "",
+  groverooms: [],
 name: "",
 song: "",
 artist: "",
+id: ""
 };
 
 componentDidMount() {
@@ -18,11 +19,10 @@ componentDidMount() {
 }
 
 getRooms = () => {
-  API.getChatRoom()
-  .then(data => console.log(data))
+  API.findAllGrooveRooms()
   .then(res => 
     this.setState({
-      grooverooms: res.data, name: "", song: "",
+      grooverooms: res.data, id: "", name: "", song: "",
       artist: ""}))
       .catch(err => console.log(err))
 }
@@ -41,9 +41,9 @@ getRooms = () => {
 {      
      <Row>  
          
-       {this.state.grooverooms.map(grooveroom => (
+       {this.state.groverooms.map(grooveroom => (
             <Col size="sm-12 md-4">  
-         <ChatCards key={grooveroom.id}>
+         <ChatCards>
                   <div className="panel-heading" >
                     <h4>{grooveroom.name}</h4></div>
                   <div className="panel-body darkPanel"><h3>Currently Playing:</h3>

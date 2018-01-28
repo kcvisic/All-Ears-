@@ -33,5 +33,12 @@ export default {
   },
   saveGrooveRoomMessage: function(data) {
     return axios.post("/api/grooveroom/message", data);
+  },
+  findAllGrooveRooms: function(groveroomId) {
+    return axios.get("/api/grooveroom", {
+      params: {
+        groveroomId: groveroomId
+      }
+    })
   }
 };
