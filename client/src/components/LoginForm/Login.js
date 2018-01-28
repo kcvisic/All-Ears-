@@ -9,7 +9,8 @@ class Login extends React.Component{
 			passsword: "",
 
 		}
-		this.handleInputChange = this.handleInputChange.bind(this);
+		   this.handleInputChange = this.handleInputChange.bind(this);
+
 	}
 
 	handleInputChange(event) {
@@ -23,7 +24,7 @@ class Login extends React.Component{
 		console.log("handleFormClose called");
 	}
 	handleFormLogin = event => {
-		event.preventDefault();
+		// event.preventDefault();
 		API.signIn(this.state)
 		.then( res =>
 			this.setState({
@@ -32,14 +33,16 @@ class Login extends React.Component{
 			})
 		)
 		 .then( res =>{
+			 this.props.callbackSuccessLogin();
 			 this.props.history.push({
 				 pathname: `/home`
 			 })
 		 })
 
 		 .catch(err => console.log(err));
+
 	}
-	
+
 	render(){
 		return(
 			<div className="login">
