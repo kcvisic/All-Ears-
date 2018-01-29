@@ -1,13 +1,10 @@
-
 import React, { Component } from "react";
 import YouTube from "../../components/YouTube";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import GrooveTitle from "../../components/GrooveTitle"
 
-
 class GroveRoom extends React.Component {
-
 constructor(props){
   super(props);
   this.handleInputChange = this.handleInputChange.bind(this);
@@ -23,9 +20,7 @@ constructor(props){
     message:"",
     returnMessages:[],
   }
-
 }
-
 componentWillMount(){
     let roomInfo = null;
     try {
@@ -61,7 +56,6 @@ setRoomInfo(roomInfo){
     returnMessages:[],
   });
 }
-
 handleInputChange = event => {
   console.log("Handling Change")
   const { name, value } = event.target;
@@ -74,7 +68,7 @@ handleMessageCreation = () => {
   API.saveGrooveRoomMessage({
       room_Id: this.state.room_id,
       message: this.state.message,
-  })  .catch(err => console.log(err));
+  }).catch(err => console.log(err));
 }
 handleMessagesRetreval = () => {
   API.getGrooveRoomMessages(
@@ -86,21 +80,14 @@ handleMessagesRetreval = () => {
 
   })).catch(err => console.log(err));
 }
-
 handleFormSubmit = event => {
   event.preventDefault();
   this.handleMessageCreation();
   this.handleMessagesRetreval();
   this.refs.fieldName.value="";
-
-
 };
 
-
   render(){
-
-
-
     return(
       <Container>
         <Row>
@@ -109,16 +96,15 @@ handleFormSubmit = event => {
             <h1>{this.state.grooveroom}</h1>
             </GrooveTitle></Col>
         </Row>
-      <Row>
+        <Row>
           <Col size="md-12">
           <YouTube>
-              <iframe className="youtube" width="100%" height="315"
+              <iframe title="This is a unique title" className="youtube" width="100%" height="315"
                 src={"https://www.youtube.com/embed/" + this.state.video_id}
-                frameborder="0" allowfullscreen></iframe>
+                frameBorder="0" allowFullScreen></iframe>
           </YouTube>
           </Col>
           <Col size="md-12">
-
                   <div className="chat-mod">
                       <div className="chatbox">
                           <div className="chatlogs">
@@ -141,18 +127,15 @@ handleFormSubmit = event => {
                               name="message"
                                ref="fieldName"
                               />
-
                             <button  type="button" onClick={this.handleFormSubmit}>Send</button>
                           </form>
-
                       </div>
                   </div>
-          </Col>
-      </Row>
+                </Col>
+              </Row>
       </Container>
     )
   }
-
 }
 
 export default GroveRoom;

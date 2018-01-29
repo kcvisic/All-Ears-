@@ -1,9 +1,7 @@
-
 import React, { Component } from "react";
-import API from "../../utils/API";
+
 import { Col, Row, Container } from "../../components/Grid";
-
-
+import Welcome from "../../components/Welcome"
 class DashBoard extends Component {
   state= {
 
@@ -14,7 +12,7 @@ class DashBoard extends Component {
         <Container>
         <Row>
             <Col size="md-12">
-
+              <Welcome></Welcome>
             </Col>
         </Row>
         </Container>
