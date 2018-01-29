@@ -25,10 +25,10 @@ module.exports = {
   findAll: function(req, res) {
     db.GroveRoom.findAll({
       id: req.query.id
-    })
+      })
     .then(function(dbGroveroom){
-      console.log(dbGroveroom)
       res.send(dbGroveroom)
+      console.log(dbGroveroom)
     })
     .catch(function(err){
       res.status(401).json(err)
