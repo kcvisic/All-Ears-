@@ -7,7 +7,7 @@ class Login extends React.Component{
 		this.state = {
 			username:"",
 			passsword:"",
-
+			error:""
 		}
 		   this.handleInputChange = this.handleInputChange.bind(this);
 

@@ -2,7 +2,9 @@ body {
   background-color: black;
   color:hsla(0, 100%, 100%, .88);
 /*  color: #044A0B;*/
-  background-image: url(images/maxresdefault.jpg);
+	margin: 0 auto;
+  background: url(images/maxresdefault.jpg)
+  	no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
