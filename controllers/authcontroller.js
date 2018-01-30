@@ -23,7 +23,7 @@ function __isAuthenticated(req){
 module.exports = {
 
   __isAuthenticated: __isAuthenticated,
-  // we want to return either 200, or a 401
+
   isAuthenticated: function(req,res){
     var userAuthenticated = __isAuthenticated(req);
     if(userAuthenticated){

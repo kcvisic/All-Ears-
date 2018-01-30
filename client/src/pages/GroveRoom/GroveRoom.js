@@ -94,45 +94,39 @@ handleFormSubmit = event => {
           <Col size="md-12">
           <GrooveTitle>
             <h1>{this.state.grooveroom}</h1>
-            </GrooveTitle></Col>
+          </GrooveTitle>
+          </Col>
         </Row>
         <Row>
           <Col size="md-12">
           <YouTube>
-              <iframe title="This is a unique title" className="youtube" width="100%" height="315"
-                src={"https://www.youtube.com/embed/" + this.state.video_id}
-                frameBorder="0" allowFullScreen></iframe>
+            <iframe title="This is a unique title" className="youtube" width="100%" height="315" src={ "https://www.youtube.com/embed/" + this.state.video_id} frameBorder="0" allowFullScreen></iframe>
           </YouTube>
           </Col>
           <Col size="md-12">
-                  <div className="chat-mod">
-                      <div className="chatbox">
-                          <div className="chatlogs">
-                              <div className = "messages">
-                              <div className="chat self">
-                                  <ul>
-                                    {
-                                      this.state.returnMessages.map( el=> (
-                        <p key={el.message} className="chat-message">{el.message}</p>
-                                    )  )
-                                    }
-                                  </ul>
-                              </div>
-                              </div>
-                          </div>
-                          <form className="chat-form">
-                            <input className="form-control"
-                            onChange={this.handleInputChange}
-                              type="text"
-                              name="message"
-                               ref="fieldName"
-                              />
-                            <button  type="button" onClick={this.handleFormSubmit}>Send</button>
-                          </form>
+          <div className="chat-mod">
+            <div className="chatbox">
+              <div className="chatlogs">
+                <div className="messages">
+                  <div className="chat self">
+                    <ul>
+                      { this.state.returnMessages.map( el=> (
+                    <div key={el.id}>
+                    <span> {el.User.username}<p className="chat-message">{el.message}</p></span> 
                       </div>
+                      ) ) }
+                    </ul>
                   </div>
-                </Col>
-              </Row>
+                </div>
+              </div>
+              <form className="chat-form">
+                <input className="form-control" onChange={this.handleInputChange} type="text" name="message" ref="fieldName" />
+                <button type="button" onClick={this.handleFormSubmit}>Send</button>
+              </form>
+            </div>
+          </div>
+          </Col>
+        </Row>
       </Container>
     )
   }

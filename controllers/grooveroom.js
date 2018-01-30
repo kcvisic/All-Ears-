@@ -66,6 +66,7 @@ module.exports = {
       where: {
         GroveRoomId: req.query.groveroomId
       },
+      include:[db.User]
 
     }).then(function(groveroomMessages) {
       res.send(groveroomMessages)

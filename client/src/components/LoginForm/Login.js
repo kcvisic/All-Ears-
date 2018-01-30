@@ -65,7 +65,6 @@ class Login extends React.Component{
 			          <div className="modal-header">
 									 <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			            	<h4 className="modal-title modal-inline-text">Login</h4>
-
 			          </div>
 			          <div className="modal-body">
 			            <div className="form-group">
@@ -90,7 +89,6 @@ class Login extends React.Component{
 			            <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.handleFormClose}>Close</button>
 			            <button type="button" className="btn btn-primary" data-dismiss="modal" id="loginButton" onClick={this.handleFormLogin}>Login</button>
 			          </div>
-
 			        </div>
 			      </div>
 			    </div>
