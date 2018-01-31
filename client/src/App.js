@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import {Redirect} from "react-router"
+import { BrowserRouter as Router, Route,  Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import GroveRoom from "./pages/GroveRoom";
 import DashBoard from "./pages/DashBoard";

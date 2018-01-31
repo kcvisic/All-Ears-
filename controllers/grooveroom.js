@@ -21,7 +21,6 @@ module.exports = {
       console.log(dbGroveroom)
     })
   },
-  
   findAll: function(req, res) {
     db.GroveRoom.findAll({
       id: req.query.id
@@ -34,6 +33,8 @@ module.exports = {
       res.status(401).json(err)
     })
     },
+
+
 
   create: function(req, res) {
     console.log(req.session.passport.user);
@@ -65,7 +66,8 @@ module.exports = {
       where: {
         GroveRoomId: req.query.groveroomId
       },
-    
+      include:[db.User]
+
     }).then(function(groveroomMessages) {
       res.send(groveroomMessages)
     }).catch(function(err) {

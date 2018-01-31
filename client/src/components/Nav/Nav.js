@@ -1,11 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Nav.css";
 import SignUp from "../SignInForm"
 import Login from "../LoginForm"
 import Logout from "../Logout"
 import API from "../../utils/API";
-import { Route, Redirect } from 'react-router'
+
 
 
 class Nav extends React.Component{
@@ -50,12 +49,10 @@ componentDidMount(){
 	        <span className="icon-bar"></span>
 	        <span className="icon-bar"></span>
 	      </button>
-	      <a className="navbar-brand" href="#">All Ears</a>
+	      <a className="navbar-brand" href="">All Ears</a>
 	    </div>
 	    <div className="collapse navbar-collapse">
-	      <ul className="nav navbar-nav">
-	        <li><a href="#">About</a></li>
-	      </ul>
+
 	      <ul className="nav navbar-nav navbar-right">
 	      {
           this.state.authenticate ?
@@ -79,7 +76,7 @@ componentDidMount(){
           )
 
         }
-	        <li><a href="#">
+	        <li><a href="">
 	        		<span>
 						<label className="switch">
 						  <input type="checkbox" id="darkModeSlider"/>

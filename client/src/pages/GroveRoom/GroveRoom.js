@@ -1,17 +1,15 @@
-
 import React, { Component } from "react";
 import YouTube from "../../components/YouTube";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import GrooveTitle from "../../components/GrooveTitle"
 
-
 class GroveRoom extends React.Component {
-
 constructor(props){
   super(props);
   this.handleInputChange = this.handleInputChange.bind(this);
   this.setRoomInfo = this.setRoomInfo.bind(this);
+  // this.handleMessagesRetreval = this.handleMessagesRetreval.bind(this);
   this.state = {
     grooveroom: "",
     video_id:  "",
@@ -22,11 +20,9 @@ constructor(props){
     message:"",
     returnMessages:[],
   }
-
 }
-
 componentWillMount(){
-    var roomInfo = null;
+    let roomInfo = null;
     try {
       roomInfo = arguments[0].location.state.roomInfo
     }
@@ -38,6 +34,9 @@ componentWillMount(){
       API.getGrooveRoomInfo(this.props.match.params.id)
         .then(function(res){
           component.setRoomInfo(res.data);
+        })
+        .then(function(){
+          // this.handleMessagesRetreval();
         })
     }
     else {
@@ -57,7 +56,6 @@ setRoomInfo(roomInfo){
     returnMessages:[],
   });
 }
-
 handleInputChange = event => {
   console.log("Handling Change")
   const { name, value } = event.target;
@@ -70,7 +68,7 @@ handleMessageCreation = () => {
   API.saveGrooveRoomMessage({
       room_Id: this.state.room_id,
       message: this.state.message,
-  })  .catch(err => console.log(err));
+  }).catch(err => console.log(err));
 }
 handleMessagesRetreval = () => {
   API.getGrooveRoomMessages(
@@ -82,74 +80,56 @@ handleMessagesRetreval = () => {
 
   })).catch(err => console.log(err));
 }
-
 handleFormSubmit = event => {
   event.preventDefault();
   this.handleMessageCreation();
   this.handleMessagesRetreval();
-
-
+  this.refs.fieldName.value="";
 };
 
-
   render(){
-
-
-
     return(
       <Container>
         <Row>
           <Col size="md-12">
           <GrooveTitle>
             <h1>{this.state.grooveroom}</h1>
-            </GrooveTitle></Col>
+          </GrooveTitle>
+          </Col>
         </Row>
-      <Row>
+        <Row>
           <Col size="md-12">
           <YouTube>
-              <iframe className="youtube" width="100%" height="315"
-                src={"https://www.youtube.com/embed/" + this.state.video_id}
-                frameborder="0" allowfullscreen></iframe>
+            <iframe title="This is a unique title" className="youtube" width="100%" height="315" src={ "https://www.youtube.com/embed/" + this.state.video_id} frameBorder="0" allowFullScreen></iframe>
           </YouTube>
           </Col>
           <Col size="md-12">
-
-                  <div className="chat-mod">
-                      <div className="chatbox">
-                          <div className="chatlogs">
-                              <div className="chat friend">
-                                  <p className="chat-message">This song is awesome</p>
-                              </div>
-                              <div className = "messages">
-                              <div className="chat self">
-                                  <ul>
-                                    {
-                                      this.state.returnMessages.forEach(function(el,index,array){
-                                        return <li>{el.message}</li>
-                                      })
-                                    }
-                                  </ul>
-                              </div>
-                              </div>
-                          </div>
-                          <form className="chat-form">
-                            <input className="form-control"
-                            onChange={this.handleInputChange}
-                              type="text"
-                              name="message"
-                              />
-
-                            <button  type="button" onClick={this.handleFormSubmit}>Send</button>
-                          </form>
-
+          <div className="chat-mod">
+            <div className="chatbox">
+              <div className="chatlogs">
+                <div className="messages">
+                  <div className="chat self">
+                    <ul>
+                      { this.state.returnMessages.map( el=> (
+                    <div key={el.id}>
+                    <span> {el.User.username}<p className="chat-message">{el.message}</p></span> 
                       </div>
+                      ) ) }
+                    </ul>
                   </div>
+                </div>
+              </div>
+              <form className="chat-form">
+                <input className="form-control" onChange={this.handleInputChange} type="text" name="message" ref="fieldName" />
+                <button type="button" onClick={this.handleFormSubmit}>Send</button>
+              </form>
+            </div>
+          </div>
           </Col>
-      </Row>
+        </Row>
       </Container>
     )
   }
-
 }
 
 export default GroveRoom;

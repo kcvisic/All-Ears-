@@ -29,7 +29,7 @@ class SignUp extends React.Component {
   }
 
   handleFormSubmit = event => {
-    // event.preventDefault();
+    event.preventDefault();
     API.submitSignup(this.state)
     .then(res =>
       this.setState({
@@ -56,10 +56,7 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="signup">
-
-
         <form>
-
           <div className="modal fade" id="signUpModal" tabIndex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
             <div className="modal-dialog">
               <div className="modal-content">
@@ -71,74 +68,25 @@ class SignUp extends React.Component {
                   <div className="form-group">
 
                     <label className="modal-inline-text">Email</label>
-                    <input className="form-control"
-                      name="email"
-                      value={this.email}
-                      type="text"
-                      id="emailInput"
-                      onChange={this.handleInputChange}
-                      required
-                    />
+                    <input className="form-control" name="email" value={this.email} type="text" id="emailInput" onChange={this.handleInputChange} required />
+
                     <label className="modal-inline-text">Firstname</label>
-                    <input className="form-control"
-                      name="firstname"
-                      value={this.firstname}
-                      type="text"
-                      id="firstname"
-                      onChange={this.handleInputChange}
-                      required
-                    />
+                    <input className="form-control" name="firstname" value={this.firstname} type="text" id="firstname" onChange={this.handleInputChange} required />
+
                     <label className="modal-inline-text">Lastname</label>
-                    <input className="form-control"
-                      name="lastname"
-                      value={this.lastname}
-                      type="text"
-                      id="lastname"
-                      onChange={this.handleInputChange}
-                      required
-                    />
+                    <input className="form-control" name="lastname" value={this.lastname} type="text" id="lastname" onChange={this.handleInputChange} required />
 
                     <label className="modal-inline-text">Username</label>
-                    <input className="form-control"
-                      name="username"
-                      value={this.username}
-                      type="text"
-                      id="usernameInput"
-                      onChange={this.handleInputChange}
-                      required
-                    />
+                    <input className="form-control" name="username" value={this.username} type="text" id="usernameInput" onChange={this.handleInputChange} required />
 
                     <label className="modal-inline-text">Password</label>
-                    <input className="form-control"
-                      name="password"
-                      value={this.password}
-                      type="password"
-                      id="passwordInput"
-                      onChange={this.handleInputChange}
-                      required
-                    />
+                    <input className="form-control" name="password" value={this.password} type="password" id="passwordInput" onChange={this.handleInputChange} required />
 
                     <label className="modal-inline-text">Confirm Password</label>
-                    <input className="form-control"
-                      name="confirmPassword"
-                      value={this.confirmPassword}
-                      type="password"
-                      id="passwordConfirmInput"
-                      onChange={this.handleInputChange}
-                      required
-                    />
+                    <input className="form-control" name="confirmPassword" value={this.confirmPassword} type="password" id="passwordConfirmInput" onChange={this.handleInputChange} required />
                     <div className="modal-footer">
-                      <button type="button"
-                        className="btn btn-default"
-                        data-dismiss="modal"
-                        onClick={this.handleFormClose}>Close</button>
-
-                      <button type="button"
-                        className="btn btn-primary"
-                        id="signUpButton"
-                        onClick={this.handleFormSubmit}
-
-                        data-dismiss="modal">Sign Up</button>
+                      <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.handleFormClose}>Close</button>
+                      <button type="button" className="btn btn-primary" id="signUpButton" onClick={this.handleFormSubmit} data-dismiss="modal">Sign Up</button>
                     </div>
                   </div>
                 </div>

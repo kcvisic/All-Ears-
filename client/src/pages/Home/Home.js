@@ -11,7 +11,7 @@ state = {
   artist: "",
   song: "",
 };
-  
+
 
 
 componentDidMount() {
@@ -29,31 +29,29 @@ getRooms = () => {
   render(){
     return (
       <Container>
-      <Row>
+        <Row>
           <Col size="md-12">
-      <Jumbotron>
-      <GroveRoomForm/>
-      </Jumbotron>
+          <Jumbotron>
+            <GroveRoomForm/>
+          </Jumbotron>
           </Col>
-      </Row>
-     
-     <Row>  
-             
-       {this.state.grooverooms.map((grooveroom, index) => (
-              <Col size="sm-12 md-4">  
-                <ChatCards>
-                  <div key={index} className="panel-heading" >
-                    <h4>{grooveroom.name}</h4></div>
-                  <div className="panel-body darkPanel"><h3>Currently Playing:</h3>
-                    <p className="roomDesc">{grooveroom.song}<br />
-                      {grooveroom.artist}</p>
-                    <a href={"/grooveroom/" + grooveroom.id} className="btn btn-primary">Go To Room</a>
-                  </div>
-              </ChatCards>
-              </Col>
-              ))}   
-          
-        </Row>       
+        </Row>
+        <Row>
+          {this.state.grooverooms.map((grooveroom, index) => (
+          <Col size="sm-12 md-4" key={index}>
+          <ChatCards >
+            <div className="panel-heading">
+              <h4 key={grooveroom.name}>{grooveroom.name}</h4></div>
+            <div className="panel-body darkPanel">
+              <h3>Currently Playing:</h3>
+              <p key={grooveroom.song}className="roomDesc">{grooveroom.song} </p> <br/><p key={grooveroom.artist} className="roomDesc">{grooveroom.artist}
+              </p>
+              <a key={grooveroom.id} href={ "/grooveroom/" + grooveroom.id} className="btn btn-primary">Go To Room</a>
+            </div>
+          </ChatCards>
+          </Col>
+          ))}
+        </Row>
       </Container>
     )
   }
