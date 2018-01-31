@@ -3,7 +3,7 @@ import GroveRoomForm from "../GroveRoomForm"
 
 const Jumbotron = ({ children }) => (
       
-      <div className="container jumbotron create-chat">
+      <div className="jumbotron create-chat">
      
             <h1 className="display-3">All Ears</h1>
             <p>All Ears is an interactive website designed For music lovers.
