@@ -7,7 +7,7 @@ import Nav from "./components/Nav";
 
 const App = () =>
   <Router>
-    <div>
+    <div id="wrap">
       <Nav />
       <Switch>
         <Route exact path="/" component={DashBoard} />
