@@ -193,6 +193,26 @@ CHATROOM STYLE
   border-radius: 5px;
 }
 
+.chat-row {
+  margin-bottom: 10px;
+}
+
+.bubble {
+  border-color: #0d858e;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 50%;
+  width: 80px;
+  height:80px;
+
+}
+
+.username {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  text-align: center;
+}
 /****************
 YOUTUBE STYLE
 ****************/
@@ -278,7 +298,8 @@ CHAT-ROOM STYLE
   margin: 5px 10px 0;
   border-radius: 10px;
   color: #fff;
-
+  clear: left;
+  
 }
 
 .friend .chat-message {
