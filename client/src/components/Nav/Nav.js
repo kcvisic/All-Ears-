@@ -4,7 +4,7 @@ import SignUp from "../SignInForm"
 import Login from "../LoginForm"
 import Logout from "../Logout"
 import API from "../../utils/API";
-
+import { Link } from "react-router-dom";
 
 
 class Nav extends React.Component{
@@ -50,6 +50,18 @@ componentDidMount(){
 	        <span className="icon-bar"></span>
 	      </button>
 	      <a className="navbar-brand" href="">All Ears</a>
+              {
+                this.state.authenticate ?
+                  (
+                    <Link className="navbar-brand" to="/home">
+             Home
+         </Link>
+            )
+         :
+         (
+           <div></div>
+         )
+       }
 	    </div>
 	    <div className="collapse navbar-collapse">
 
