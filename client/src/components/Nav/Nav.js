@@ -1,9 +1,11 @@
 import React from "react";
+import {  Link } from "react-router-dom";
 import "./Nav.css";
 import SignUp from "../SignInForm"
 import Login from "../LoginForm"
 import Logout from "../Logout"
 import API from "../../utils/API";
+
 
 
 
@@ -50,6 +52,19 @@ return(
 	        <span className="icon-bar"></span>
 	      </button>
 	      <a className="navbar-brand" href="">All Ears</a>
+        {
+          this.state.authenticate ?
+          (
+            <Link className="navbar-brand" to="/home">
+              Home
+          </Link>
+          )
+          :
+          (
+            <div></div>
+          )
+        }
+
 	    </div>
 	    <div className="collapse navbar-collapse">
 
@@ -66,7 +81,7 @@ return(
              [
                 <li>
                   <a  data-toggle="modal" data-target="#loginModal"><span className="glyphicon glyphicon-log-in"></span> Login</a>
-                  <SignUp />
+                  <SignUp callbackSuccessLogin={this.callbackSuccessLogin}/>
                 </li>,
                 <li>
                   <a data-toggle="modal" data-target="#signUpModal"><span className="glyphicon glyphicon-user"></span> Sign Up</a>

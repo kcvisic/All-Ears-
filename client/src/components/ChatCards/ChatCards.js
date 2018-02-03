@@ -3,9 +3,10 @@ import "./ChatCards.css";
 
 const ChatCards = ({children, props}) => (
 
-    <div className="panel panel-default">
+    <div >
       {children}
     </div>
 );
+
 
 export default ChatCards;

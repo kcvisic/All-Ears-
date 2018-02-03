@@ -22,9 +22,7 @@ module.exports = {
   },
 
   findAll: function(req, res) {
-    db.GroveRoom.findAll({
-      id: req.query.id
-      })
+    db.GroveRoom.findAll()
     .then(function(dbGroveroom){
       res.send(dbGroveroom)
       console.log(dbGroveroom)
@@ -39,8 +37,10 @@ module.exports = {
   create: function(req, res) {
     console.log(req.session.passport.user);
     db.GroveRoom.create({name: req.body.grooveRoomInput,
-      song:req.body.song, video_id: req.body.video_id,
+      song:req.body.song,
+      video_id: req.body.video_id,
       artist:req.body.artist,
+      image:req.body.image,
       creator_id:req.session.passport.user})
       .then(function(groveRoom) {
       res.send(groveRoom);
@@ -65,7 +65,9 @@ module.exports = {
     db.Messages.findAll({
       where: {
         GroveRoomId: req.query.groveroomId
-      },
+      },order:[
+        ["id" , "ASC"]
+      ],
       include:[db.User]
 
     }).then(function(groveroomMessages) {

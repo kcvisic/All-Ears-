@@ -9,9 +9,13 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
+height: 100%;
 }
 
+#wrap {
+min-height: calc(100vh - 200px);
+margin-bottom: 60px;
+}
 
 .no-visit-change:visited {
   background-color:#222;
@@ -51,8 +55,6 @@ body {
 .modal-inline-text{
   color: black;
 }
-
-
 
 /* The switch - the box around the slider */
 .switch {
@@ -191,6 +193,26 @@ CHATROOM STYLE
   border-radius: 5px;
 }
 
+.chat-row {
+  margin-bottom: 10px;
+}
+
+.bubble {
+  border-color: #0d858e;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 50%;
+  width: 80px;
+  height:80px;
+
+}
+
+.username {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  text-align: center;
+}
 /****************
 YOUTUBE STYLE
 ****************/
@@ -276,6 +298,7 @@ CHAT-ROOM STYLE
   margin: 5px 10px 0;
   border-radius: 10px;
   color: #fff;
+  clear: left;
 
 }
 
@@ -389,4 +412,15 @@ section {
 }
 #performerImg{
   margin-top: 20px;
+}
+
+
+/****************
+FOOTER STYLE
+****************/
+
+footer {
+  line-height:60px;
+  height:70px;
+  background-color: rgba(0, 0, 0, 0.5);
 }

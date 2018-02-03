@@ -111,9 +111,10 @@ handleFormSubmit = event => {
                   <div className="chat self">
                     <ul>
                       { this.state.returnMessages.map( el=> (
-                    <div key={el.id}>
-                    <span> {el.User.username}<p className="chat-message">{el.message}</p></span> 
-                      </div>
+                    <div className="chat-row col-md-12" key={el.id}>
+                      <div className="bubble col-lg-4"><span className="username">{el.User.username}</span></div><div className="col-lg-8"><p className="chat-message">{el.message}</p></div>
+                       </div>
+
                       ) ) }
                     </ul>
                   </div>
