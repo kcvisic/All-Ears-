@@ -11,7 +11,7 @@ constructor(props){
      artist: "",
      grooveRoomInput:"",
      video_id: "",
-
+     image:"",
    };
    this.handleInputChange = this.handleInputChange.bind(this);
 }
@@ -33,13 +33,15 @@ handleFormCreate = event => {
   API.getYouTubeVideo(`${this.state.song} ${this.state.artist}`)
     .then(res =>
       this.setState({
-      video_id: res.data.id
+      video_id: res.data.id,
+      image:res.data.thumbnails.high.url,
       })
     )
     .then(res => API.saveGrooveRoomForm({
         song: this.state.song,
         artist: this.state.artist,
         video_id:this.state.video_id,
+        image:this.state.image,
         grooveRoomInput:this.state.grooveRoomInput
     }).then(res => {
     const grooveroomId = res.data.id;

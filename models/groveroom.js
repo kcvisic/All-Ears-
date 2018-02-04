@@ -18,6 +18,10 @@ module.exports = function (sequelize, Sequelize) {
     artist: {
         type: Sequelize.STRING,
         allowNul: false,
+    },
+    image: {
+        type: Sequelize.STRING,
+        allowNul: false,
     }
   },
   {

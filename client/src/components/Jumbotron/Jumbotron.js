@@ -1,10 +1,9 @@
 import React from "react";
 
-
 const Jumbotron = ({ children }) => (
-      
+
       <div className="jumbotron create-chat">
-     
+
             <h1 className="display-3">All Ears</h1>
             <p>All Ears is an interactive website designed For music lovers.
             Visitors to our website have an opportunity to experience acoustic chat rooms which are specifically designed to encourage fruitful discussions content sharing.</p>
@@ -14,7 +13,6 @@ const Jumbotron = ({ children }) => (
        </div>
 
       </div>
-     
 )
 
 export default Jumbotron;

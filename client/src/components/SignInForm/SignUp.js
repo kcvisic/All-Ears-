@@ -14,7 +14,8 @@ class SignUp extends React.Component {
       confirmPassword: "",
 
     }
-    this.handleInputChange = this.handleInputChange.bind(this);
+       this.handleInputChange = this.handleInputChange.bind(this);
+       this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   handleInputChange(event) {
     console.log("Handling Change");
@@ -39,11 +40,16 @@ class SignUp extends React.Component {
         username:this.state.username,
         password:this.state.password,
         confirmPassword:this.state.confirmPassword
-
       })
 
-    )
+    ).then(res => {
+      API.signIn({
+  			username:this.state.username,
+  			password:this.state.password
+  		})
+    })
     .then( res =>{
+       this.props.callbackSuccessLogin();
       this.props.history.push({
         pathname: `/home`
       })
