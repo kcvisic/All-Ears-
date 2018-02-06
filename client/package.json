@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "react": "^16.2.0",
+    "concurrently": "x.x.x",
     "react-chat-window": "^1.0.7",
     "react-dom": "^16.1.1",
     "react-iframe": "^1.1.0",
