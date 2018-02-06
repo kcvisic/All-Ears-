@@ -1,4 +1,4 @@
-{
+1{
   "name": "mern",
   "version": "1.0.0",
   "description": "Mern Demo",
@@ -20,6 +20,7 @@
     "axios": "^0.17.1",
     "bcrypt-nodejs": "0.0.3",
     "connect-flash": "^0.1.1",
+    "concurrently": "x.x.x",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "express-session": "^1.15.6",
