@@ -40,6 +40,8 @@ export default {
         groveroomId: groveroomId
       }
     })
+  },
+  findUsers: function(userId) {
+    return axios.get("/api/grooveroom/users/" + userId)
   }
-
 };

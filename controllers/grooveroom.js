@@ -1,4 +1,3 @@
-
 const axios = require("axios");
 const db = require("../models");
 const bodyParser = require("body-parser");
@@ -31,8 +30,6 @@ module.exports = {
       res.status(401).json(err)
     })
     },
-
-
 
   create: function(req, res) {
     console.log(req.session.passport.user);
@@ -73,6 +70,23 @@ module.exports = {
     }).then(function(groveroomMessages) {
       res.send(groveroomMessages)
     }).catch(function(err) {
+      res.status(401).json(err)
+    })
+  },
+  getUser: function(req, res) {
+    const id = req.params.id
+    console.log(req.params.id)
+    db.User.findById({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(function(dbUser){
+      console.log(dbUser)
+      res.send(dbUser)
+    
+    })
+    .catch(function(err){
       res.status(401).json(err)
     })
   }

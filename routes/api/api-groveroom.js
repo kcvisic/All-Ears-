@@ -17,4 +17,6 @@ router.route("/message")
 router.route("/room")
   .get(grooveController.findAll);
 
+router.route("/users/:id")
+
 module.exports = router;

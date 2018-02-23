@@ -21,6 +21,11 @@ constructor(props){
     returnMessages:[],
   }
 }
+
+componentDidMount() {
+  this.getUserInfo()
+}
+
 componentWillMount(){
     let roomInfo = null;
     try {
@@ -42,6 +47,16 @@ componentWillMount(){
     else {
       this.setRoomInfo(roomInfo);
     }
+}
+
+getUserInfo() {
+  API.findUsers()
+  .then(function(res){
+    this.setState(res.data)
+    .then(function(){
+
+    })
+  })
 }
 
 setRoomInfo(roomInfo){
@@ -76,7 +91,7 @@ handleMessagesRetreval = () => {
   )
   .then(res =>
     this.setState({
-    returnMessages:res.data
+    returnMessages: res.data
 
   })).catch(err => console.log(err));
 }
@@ -86,6 +101,7 @@ handleFormSubmit = event => {
   this.handleMessagesRetreval();
   this.refs.fieldName.value="";
 };
+
 
   render(){
     return(
@@ -103,7 +119,9 @@ handleFormSubmit = event => {
             <iframe title="This is a unique title" className="youtube" width="100%" height="315" src={ "https://www.youtube.com/embed/" + this.state.video_id} frameBorder="0" allowFullScreen></iframe>
           </YouTube>
           </Col>
-          <Col size="md-12">
+          </Row>
+          <Row>
+          <Col size="md-6">
           <div className="chat-mod">
             <div className="chatbox">
               <div className="chatlogs">
@@ -126,6 +144,14 @@ handleFormSubmit = event => {
               </form>
             </div>
           </div>
+          </Col>
+          <Col size="md-6">
+            <ul className="list-group">
+              {this.state.map(el => (
+                <li className="list-group-item" key={el.id}>{el.User.username}</li>
+                 ))}
+            </ul>
+
           </Col>
         </Row>
       </Container>
