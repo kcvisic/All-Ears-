@@ -34,10 +34,23 @@ export default {
   saveGrooveRoomMessage: function(data) {
     return axios.post("/api/grooveroom/message", data);
   },
-  findAllGrooveRooms: function(groveroomId) {
-    return axios.get("/api/grooveroom/room", {
+
+  findAllGrooveRooms: function() {
+    return axios.get("/api/grooveroom/room")
+  },
+
+  deleteGrooveRoom: function(roomId){
+    return axios.delete("/api/grooveroom/room", {
       params: {
-        groveroomId: groveroomId
+        roomId: roomId
+          }
+      })
+
+  },
+  checkIfAdmin: function(room_id){
+    return axios.get("/api/grooveroom/admin", {
+      params: {
+        room_id: room_id
       }
     })
   },

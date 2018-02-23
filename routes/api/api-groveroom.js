@@ -15,7 +15,11 @@ router.route("/message")
     .post(grooveController.createMsg)
 
 router.route("/room")
-  .get(grooveController.findAll);
+  .get(grooveController.findAll)
+  .delete(grooveController.deleteRoom);
+
+  router.route("/admin")
+    .get(grooveController.isAdmin);
 
 router.route("/users/:id")
 

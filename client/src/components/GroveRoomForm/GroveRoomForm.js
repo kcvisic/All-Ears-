@@ -49,19 +49,11 @@ handleFormCreate = event => {
         pathname: `/grooveroom/${grooveroomId}`,
         state: {roomInfo: res.data},
       })
-
    })
-
-
 )}
 
-
-  render() {
-  
-    
-
-    return (
-       
+render(){
+  return (
 
     <div>
       <form>
