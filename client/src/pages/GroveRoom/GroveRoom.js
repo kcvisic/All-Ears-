@@ -4,7 +4,8 @@ import {  withRouter } from "react-router-dom";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import GrooveTitle from "../../components/GrooveTitle"
-
+import AdminInputForm from "../../components/AdminInputForm";
+import AdminToggle from "../../components/AdminToggle";
 class GroveRoom extends React.Component {
 constructor(props){
   super(props);
@@ -117,16 +118,27 @@ handleFormDelete = event => {
   })
 }
 
+handleFormSearch = event =>{
+
+}
+handleFormClose = event => {
+
+}
+
   render(){
     return(
       <Container>
         <Row>
           <Col size="md-12">
+
           <GrooveTitle>
+
+
             {
               this.state.admin ?
               (
-                        <button type="button" className="btn btn-primary"  onClick={this.handleFormDelete}>Delete</button>
+                    <button type="button" className="btn btn-primary" onClick={this.handleFormDelete} id="deleteRoomBtn">Delete</button>
+
               )
               :
               (

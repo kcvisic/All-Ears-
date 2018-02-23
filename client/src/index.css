@@ -21,6 +21,13 @@ margin-bottom: 60px;
   background-color:#222;
 
 }
+#newSongBtn{
+  float:left;
+}
+
+#deleteRoomBtn{
+  float:right;
+}
 
 .btn{
   background-color: #222;
