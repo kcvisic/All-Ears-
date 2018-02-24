@@ -53,10 +53,9 @@ export default {
         room_id: room_id
       }
     })
-  }
-
-
-
-
+  },
+  updateGrooveRoomData: function(data) {
+    return axios.put("/api/grooveroom/update" , data)
+  },
 
 };

@@ -11,6 +11,9 @@ router.route("/room/:id")
 router.route("/create")
     .post(grooveController.create);
 
+router.route("/update")
+        .put(grooveController.updateGroveRoom);
+
 router.route("/message")
     .post(grooveController.createMsg)
 
