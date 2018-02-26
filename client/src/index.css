@@ -1,69 +1,69 @@
 body {
   background-color: black;
-  color:hsla(0, 100%, 100%, .88);
-/*  color: #044A0B;*/
-	margin: 0 auto;
-  background: url(images/maxresdefault.jpg)
-  	no-repeat center center fixed;
+  color: hsla(0, 100%, 100%, .88);
+  /*  color: #044A0B;*/
+  margin: 0 auto;
+  background: url(images/maxresdefault.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-height: 100%;
+  height: 100%;
 }
 
 #wrap {
-min-height: calc(100vh - 200px);
-margin-bottom: 60px;
+  min-height: calc(100vh - 200px);
+  margin-bottom: 60px;
 }
 
 .no-visit-change:visited {
-  background-color:#222;
-
-}
-#newSongBtn{
-  float:left;
+  background-color: #222;
 }
 
-#deleteRoomBtn{
-  float:right;
+#newSongBtn {
+  float: left;
 }
 
-.btn{
+#deleteRoomBtn {
+  float: right;
+}
+
+.btn {
   background-color: #222;
   color: inherit;
   border-color: hsla(0, 100%, 100%, .88);
 }
 
-.btn:hover{
+.btn:hover {
   background-color: #080808;
   border-color: red;
 }
 
-.btn:active:focus{
+.btn:active:focus {
   background-color: white;
   color: black;
 }
 
-.btn-lg:focus{
+.btn-lg:focus {
   background-color: #222;
 }
 
-.btn-primary:active:focus{
+.btn-primary:active:focus {
   background-color: white;
   color: black;
 }
 
-.btn-md:active:focus{
+.btn-md:active:focus {
   background-color: white;
   color: black;
 }
 
-.modal-inline-text{
+.modal-inline-text {
   color: black;
 }
 
 /* The switch - the box around the slider */
+
 .switch {
   position: relative;
   display: block;
@@ -75,9 +75,13 @@ margin-bottom: 60px;
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+
+.switch input {
+  display: none;
+}
 
 /* The slider */
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -102,21 +106,22 @@ margin-bottom: 60px;
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
+
 .slider.round {
   border-radius: 24px;
 }
@@ -124,7 +129,6 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
 
 /****************
 TITLE STYLE
@@ -136,27 +140,23 @@ TITLE STYLE
   border-radius: 5px;
 }
 
-
-
 /****************
 CHATROOM STYLE
 ****************/
 
 .chat-room-main {
   max-width: 700px;
-    background-color: rgba(0, 0, 0, 0.5);
-  
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .chat-room-secondary {
   max-width: 300px;
-     background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   max-height: 300px;
   padding: 0;
 }
 
 .chat-image-main {
-
   max-width: 225px;
 }
 
@@ -177,15 +177,11 @@ CHATROOM STYLE
 }
 
 .chat-image-secondary {
-
   max-width: 150px;
-
 }
 
 .button-second {
-
   width: 30px;
-
   position: relative;
   bottom: 75px;
 }
@@ -193,7 +189,6 @@ CHATROOM STYLE
 .darkPanel {
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 
 .create-chat {
   background-color: rgba(0, 0, 0, 0.5);
@@ -210,8 +205,7 @@ CHATROOM STYLE
   border-width: 5px;
   border-radius: 50%;
   width: 80px;
-  height:80px;
-
+  height: 80px;
 }
 
 .username {
@@ -220,9 +214,11 @@ CHATROOM STYLE
   left: 5px;
   text-align: center;
 }
+
 /****************
 YOUTUBE STYLE
 ****************/
+
 .youtube-holder {
   background-color: rgba(156, 92, 92, 0.3);
   margin: 10px auto;
@@ -236,12 +232,13 @@ YOUTUBE STYLE
   position: relative;
   top: 25px;
 }
+
 /****************
 CHAT-ROOM STYLE
 ****************/
 
 .chat-mod {
-  background-color:rgba(156, 92, 92, 0.3);
+  background-color: rgba(156, 92, 92, 0.3);
   border-radius: 5%;
   margin: 10px auto;
   padding: 15px;
@@ -257,7 +254,6 @@ CHAT-ROOM STYLE
   padding: 20px;
   margin: 20px auto;
   box-shadow: 0 3px #ccc;
-
 }
 
 .chatlogs {
@@ -274,16 +270,14 @@ CHAT-ROOM STYLE
 
 .chatlogs::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background: rgba(0,0,0,.1);
+  background: rgba(0, 0, 0, .1);
 }
 
 .chat {
-
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
   margin-bottom: 10px;
-
 }
 
 .chat .user-photo {
@@ -296,7 +290,7 @@ CHAT-ROOM STYLE
 
 .chat .user-photo img {
   width: 100%;
-  }
+}
 
 .chat .chat-message {
   font-size: 1em;
@@ -315,7 +309,6 @@ CHAT-ROOM STYLE
 .self .chat-message {
   background: #0d858e;
   order: -1;
-
 }
 
 .chat-form {
@@ -346,7 +339,7 @@ CHAT-ROOM STYLE
 
 .chat-form textarea::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background: rgba(0,0,0,.1);
+  background: rgba(0, 0, 0, .1);
 }
 
 .chat-form button {
@@ -359,7 +352,6 @@ CHAT-ROOM STYLE
   border-radius: 3px;
   box-shadow: 0 3px 0 #0eb2c1;
   cursor: pointer;
-
   -webkit-transition: background .2% ease;
   -moz-transition: background .2% ease;
   -o-transition: background .2% ease;
@@ -367,10 +359,7 @@ CHAT-ROOM STYLE
 
 .chat-form button:hover {
   background: #13c8d9;
-
 }
-
-
 
 /****************
 LYRIC STYLE
@@ -388,7 +377,7 @@ LYRIC STYLE
   padding: 20px;
   margin: 20px auto;
   box-shadow: 0 3px #ccc;
-   overflow-x: hidden;
+  overflow-x: hidden;
   overflow-y: scroll;
   color: #000000;
   font-size: 14px;
@@ -398,9 +387,8 @@ LYRIC STYLE
 LYRIC STYLE
 ****************/
 
-
 .stubhub-section {
-   background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /****************
@@ -408,25 +396,23 @@ ABOUT STYLE
 ****************/
 
 .is-dark {
-
   opacity: 0.8;
 }
 
 section {
-
   margin-bottom: 20px;
 }
-#performerImg{
+
+#performerImg {
   margin-top: 20px;
 }
-
 
 /****************
 FOOTER STYLE
 ****************/
 
 footer {
-  line-height:60px;
-  height:70px;
+  line-height: 60px;
+  height: 70px;
   background-color: rgba(0, 0, 0, 0.5);
 }

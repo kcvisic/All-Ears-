@@ -10,14 +10,14 @@ const router = require("express").Router();
 //  THIS FUNCTION SHOULD RETURN A PROMISE, WHICH WILL HAVE A BOOLEAN INDICATING
 //  WHETHER THE USER_ID IS THE CREATOR FOR THE ROOM_ID
 
-var __isAdmin = function(userId, roomId) {
+var __isAdmin = function (userId, roomId) {
   let isAdmin = false;
 
   return db.GroveRoom.findOne({
     where: {
       id: roomId
     }
-  }).then(function(roomInfo) {
+  }).then(function (roomInfo) {
     if (roomInfo.creator_id === userId) {
       isAdmin = true;
     }
@@ -26,56 +26,56 @@ var __isAdmin = function(userId, roomId) {
 }
 
 module.exports = {
-  isAdmin: function(req, res) {
-    __isAdmin(req.session.passport.user, req.query.room_id).then(function(isAdmin) {
+  isAdmin: function (req, res) {
+    __isAdmin(req.session.passport.user, req.query.room_id).then(function (isAdmin) {
 
-      res.send({isAdmin: isAdmin})
+      res.send({ isAdmin: isAdmin })
     })
   },
 
-  deleteRoom: function(req, res) {
+  deleteRoom: function (req, res) {
     console.log(req.query)
-    __isAdmin(req.session.passport.user, req.query.roomId).then(function(isAdmin) {
+    __isAdmin(req.session.passport.user, req.query.roomId).then(function (isAdmin) {
       if (isAdmin) {
         db.GroveRoom.destroy({
           where: {
             id: req.query.roomId
           }
-        }).then(function() {
+        }).then(function () {
           res.sendStatus(200)
-        }).catch(function(err) {
+        }).catch(function (err) {
           console.log(err);
           res.sendStatus(500).json(err)
         })
       }
-      else{
+      else {
         res.sendStatus(401)
       }
     })
   },
-  updateGroveRoom: function(req, res){
-    __isAdmin(req.session.passport.user, req.body.room_id).then(function(isAdmin){
-      if(isAdmin){
+  updateGroveRoom: function (req, res) {
+    __isAdmin(req.session.passport.user, req.body.room_id).then(function (isAdmin) {
+      if (isAdmin) {
         db.GroveRoom.update({
-          song:req.body.song,
-          artist:req.body.artist,
-          video_id:req.body.video_id,
-          image:req.body.image
+          song: req.body.song,
+          artist: req.body.artist,
+          video_id: req.body.video_id,
+          image: req.body.image
         }, {
-          where: {
-            id: req.body.room_id
-          }
-        }).then(function(newRoomInfo){
-          res.json(newRoomInfo)
-        })
+            where: {
+              id: req.body.room_id
+            }
+          }).then(function (newRoomInfo) {
+            res.json(newRoomInfo)
+          })
       }
-      else{
-          res.sendStatus(401)
+      else {
+        res.sendStatus(401)
       }
     })
   },
 
-  findById: function(req, res) {
+  findById: function (req, res) {
     console.log("Called findById")
     const id = req.params.id
     console.log(req.params.id)
@@ -83,24 +83,25 @@ module.exports = {
       where: {
         id: id
       }
-    }).then(function(dbGroveroom) {
+    }).then(function (dbGroveroom) {
       res.json(dbGroveroom)
 
-    }).catch(function(err) {
+    }).catch(function (err) {
       res.status(401).json(err)
       console.log(dbGroveroom)
     })
   },
-  findAll: function(req, res) {
-    db.GroveRoom.findAll().then(function(dbGroveroom) {
+
+  findAll: function (req, res) {
+    db.GroveRoom.findAll().then(function (dbGroveroom) {
       res.send(dbGroveroom)
       console.log(dbGroveroom)
-    }).catch(function(err) {
+    }).catch(function (err) {
       res.status(401).json(err)
     })
   },
 
-  create: function(req, res) {
+  create: function (req, res) {
     console.log(req.session.passport.user);
     db.GroveRoom.create({
       name: req.body.grooveRoomInput,
@@ -109,21 +110,21 @@ module.exports = {
       artist: req.body.artist,
       image: req.body.image,
       creator_id: req.session.passport.user
-    }).then(function(groveRoom) {
+    }).then(function (groveRoom) {
       res.send(groveRoom);
-    }).catch(function(err) {
+    }).catch(function (err) {
       res.status(401).json(err)
     })
   },
 
-  createMsg: function(req, res) {
-    db.Messages.create({message: req.body.message, GroveRoomId: req.body.room_Id, UserId: req.session.passport.user}).then(function(groveRoomMessage) {
+  createMsg: function (req, res) {
+    db.Messages.create({ message: req.body.message, GroveRoomId: req.body.room_Id, UserId: req.session.passport.user }).then(function (groveRoomMessage) {
       res.send(groveRoomMessage)
-    }).catch(function(err) {
+    }).catch(function (err) {
       res.status(401).json(err)
     })
   },
-  getMsgForGroveRoom: function(req, res) {
+  getMsgForGroveRoom: function (req, res) {
     console.log("Yo");
     console.log("Looking for messages for room: " + req.query.groveroomId)
     db.Messages.findAll({
@@ -135,26 +136,9 @@ module.exports = {
       ],
       include: [db.User]
 
-    }).then(function(groveroomMessages) {
+    }).then(function (groveroomMessages) {
       res.send(groveroomMessages)
-    }).catch(function(err) {
-      res.status(401).json(err)
-    })
-  },
-  getUser: function(req, res) {
-    const id = req.params.id
-    console.log(req.params.id)
-    db.User.findById({
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(function(dbUser){
-      console.log(dbUser)
-      res.send(dbUser)
-    
-    })
-    .catch(function(err){
+    }).catch(function (err) {
       res.status(401).json(err)
     })
   }

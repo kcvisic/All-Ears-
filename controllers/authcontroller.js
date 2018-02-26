@@ -24,7 +24,7 @@ module.exports = {
 
   __isAuthenticated: __isAuthenticated,
 
-  isAuthenticated: function(req,res){
+  isAuthenticated: function (req, res) {
     var userAuthenticated = __isAuthenticated(req);
     if (userAuthenticated) {
       res.sendStatus(200)
