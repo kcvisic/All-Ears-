@@ -33,4 +33,5 @@
     "sequelize": "^4.29.0",
     "simple-youtube-api": "^5.0.1"
   }
+ 
 }

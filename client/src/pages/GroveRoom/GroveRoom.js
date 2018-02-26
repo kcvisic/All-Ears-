@@ -202,7 +202,7 @@ handleFormClose = event => {
           </Col>
           </Row>
           <Row>
-          <Col size="md-6">
+          <Col size="md-12">
           <div className="chat-mod">
             <div className="chatbox">
               <div className="chatlogs">
@@ -225,14 +225,6 @@ handleFormClose = event => {
               </form>
             </div>
           </div>
-          </Col>
-          <Col size="md-6">
-            <ul className="list-group">
-              {this.state.map(el => (
-                <li className="list-group-item" key={el.id}>{el.User.username}</li>
-                 ))}
-            </ul>
-
           </Col>
         </Row>
       </Container>
