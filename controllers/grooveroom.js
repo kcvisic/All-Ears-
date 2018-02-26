@@ -53,6 +53,27 @@ module.exports = {
       }
     })
   },
+  updateGroveRoom: function(req, res){
+    __isAdmin(req.session.passport.user, req.body.room_id).then(function(isAdmin){
+      if(isAdmin){
+        db.GroveRoom.update({
+          song:req.body.song,
+          artist:req.body.artist,
+          video_id:req.body.video_id,
+          image:req.body.image
+        }, {
+          where: {
+            id: req.body.room_id
+          }
+        }).then(function(newRoomInfo){
+          res.json(newRoomInfo)
+        })
+      }
+      else{
+          res.sendStatus(401)
+      }
+    })
+  },
 
   findById: function(req, res) {
     console.log("Called findById")

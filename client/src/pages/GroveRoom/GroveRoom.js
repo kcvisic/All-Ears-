@@ -4,7 +4,6 @@ import {  withRouter } from "react-router-dom";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import GrooveTitle from "../../components/GrooveTitle"
-import AdminInputForm from "../../components/AdminInputForm";
 import AdminToggle from "../../components/AdminToggle";
 class GroveRoom extends React.Component {
 constructor(props){
@@ -14,6 +13,7 @@ constructor(props){
   this.handleMessagesRetreval = this.handleMessagesRetreval.bind(this);
   this.handleIfAdmenDisplayDeleteBtn =this.handleIfAdmenDisplayDeleteBtn.bind(this);
   this.handleFormDelete = this.handleFormDelete.bind(this);
+  this.handleFormSearch = this.handleFormSearch.bind(this);
   this.state = {
     grooveroom: "",
     video_id:  "",
@@ -100,6 +100,7 @@ handleFormSubmit = event => {
   this.handleMessageCreation();
   this.handleMessagesRetreval();
   this.refs.fieldName.value="";
+
 };
 
 handleIfAdmenDisplayDeleteBtn = () => {
@@ -124,7 +125,25 @@ handleFormDelete = event => {
 }
 
 handleFormSearch = event =>{
-
+    event.preventDefault();
+  API.getYouTubeVideo(`${this.state.song} ${this.state.artist}`)
+  .then(res =>
+  this.setState({
+    video_id:res.data.id,
+    image:res.data.thumbnails.high.url,
+  })
+).
+then(res =>
+API.updateGrooveRoomData({
+  room_id:this.state.room_id,
+  song:this.state.song,
+  artist:this.state.artist,
+  video_id:this.state.video_id,
+  image:this.state.image
+})
+)
+this.refs.fieldNameSong.value="";
+this.refs.fieldNameArtist.value="";
 }
 handleFormClose = event => {
 
@@ -142,8 +161,28 @@ handleFormClose = event => {
             {
               this.state.admin ?
               (
-                    <button type="button" className="btn btn-primary" onClick={this.handleFormDelete} id="deleteRoomBtn">Delete</button>
-
+                [
+                    <button type="button" className="btn btn-primary" onClick={this.handleFormDelete} id="deleteRoomBtn">Delete</button>,
+                      <div id="newSongBtn">
+                     <button type="button" className="btn btn-primary btn-lg buttonShowModal" data-toggle="modal" data-target="#myModal" id="newSongBtn">New Song</button>
+                     </div>,
+                      <AdminToggle>
+                        <div className="modal-body" id="myModalBody">
+                          <div className="form-group">
+                            <p className="modal-inline-text">Choose another song.</p>
+                            <label className="modal-inline-text">Enter Song</label>
+                            <input className="form-control ui-autocomplete-input" onChange={this.handleInputChange} name="song" id="initialSong" ref="fieldNameSong"/>
+                            <label className="modal-inline-text">Enter Artist</label>
+                            <input className="form-control ui-autocomplete-input" onChange={this.handleInputChange} name="artist" id="initialArtist" ref="fieldNameArtist" />
+                          </div>
+                        </div>
+                          <div id="errorMessageContainer" />
+                        <div className="modal-footer" id="myModalFooter">
+                          <button onClick={this.handleFormClose} type="button" className="btn btn-default modal-closer" data-dismiss="modal">Close</button>
+                          <button onClick={this.handleFormSearch} type="button" className="btn btn-primary" id="createGrooveRoom" data-dismiss="modal">Submit</button>
+                        </div>
+                      </AdminToggle>
+                ]
               )
               :
               (

@@ -54,7 +54,8 @@ export default {
       }
     })
   },
-  findUsers: function(userId) {
-    return axios.get("/api/grooveroom/users/" + userId)
-  }
+  updateGrooveRoomData: function(data) {
+    return axios.put("/api/grooveroom/update" , data)
+  },
+
 };
