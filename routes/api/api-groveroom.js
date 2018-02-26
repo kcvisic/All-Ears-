@@ -12,18 +12,16 @@ router.route("/create")
     .post(grooveController.create);
 
 router.route("/update")
-        .put(grooveController.updateGroveRoom);
+    .put(grooveController.updateGroveRoom);
 
 router.route("/message")
     .post(grooveController.createMsg)
 
 router.route("/room")
-  .get(grooveController.findAll)
-  .delete(grooveController.deleteRoom);
+    .get(grooveController.findAll)
+    .delete(grooveController.deleteRoom);
 
-  router.route("/admin")
+router.route("/admin")
     .get(grooveController.isAdmin);
-
-router.route("/users/:id")
 
 module.exports = router;
