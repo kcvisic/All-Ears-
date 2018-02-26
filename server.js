@@ -33,10 +33,10 @@ app.use(passport.session());
 require('./config/passport/passport')(passport);
 
 // initialize all of our application routes...
-require('./routes')(app,passport);
+require('./routes')(app, passport);
 
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
 });
