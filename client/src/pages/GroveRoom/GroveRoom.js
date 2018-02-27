@@ -24,6 +24,8 @@ class GroveRoom extends React.Component {
       message: "",
       returnMessages: [],
       admin: false,
+      username: "",
+      users: []
     }
   }
   componentWillMount() {

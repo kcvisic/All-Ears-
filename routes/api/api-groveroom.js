@@ -24,4 +24,7 @@ router.route("/room")
 router.route("/admin")
     .get(grooveController.isAdmin);
 
+router.route("/room/attendees")
+.get(grooveController.grooveroomAttendees)
+
 module.exports = router;

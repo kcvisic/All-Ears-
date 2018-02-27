@@ -29,7 +29,9 @@ module.exports = {
   isAdmin: function (req, res) {
     __isAdmin(req.session.passport.user, req.query.room_id).then(function (isAdmin) {
 
-      res.send({ isAdmin: isAdmin })
+      res.send({
+        isAdmin: isAdmin
+      })
     })
   },
 
@@ -47,8 +49,7 @@ module.exports = {
           console.log(err);
           res.sendStatus(500).json(err)
         })
-      }
-      else {
+      } else {
         res.sendStatus(401)
       }
     })
@@ -62,14 +63,13 @@ module.exports = {
           video_id: req.body.video_id,
           image: req.body.image
         }, {
-            where: {
-              id: req.body.room_id
-            }
-          }).then(function (newRoomInfo) {
-            res.json(newRoomInfo)
-          })
-      }
-      else {
+          where: {
+            id: req.body.room_id
+          }
+        }).then(function (newRoomInfo) {
+          res.json(newRoomInfo)
+        })
+      } else {
         res.sendStatus(401)
       }
     })
@@ -118,7 +118,11 @@ module.exports = {
   },
 
   createMsg: function (req, res) {
-    db.Messages.create({ message: req.body.message, GroveRoomId: req.body.room_Id, UserId: req.session.passport.user }).then(function (groveRoomMessage) {
+    db.Messages.create({
+      message: req.body.message,
+      GroveRoomId: req.body.room_Id,
+      UserId: req.session.passport.user
+    }).then(function (groveRoomMessage) {
       res.send(groveRoomMessage)
     }).catch(function (err) {
       res.status(401).json(err)
@@ -141,6 +145,22 @@ module.exports = {
     }).catch(function (err) {
       res.status(401).json(err)
     })
+  },
+  grooveroomAttendees: function (req, res) {
+    db.User.findAll({
+        where: {
+          userId: req.session.passport.user
+        },
+        order: [
+          ["id", "ASC"]
+        ],
+        include: [db.GroveRoom]
+      })
+      .then(function (dbgrooveAttendee) {
+        res.send(dbgrooveAttendee)
+      }).catch(function (err) {
+        res.status(401).json(err)
+      })
   }
 
 }
