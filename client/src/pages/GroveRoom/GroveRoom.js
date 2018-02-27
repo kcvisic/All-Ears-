@@ -26,7 +26,8 @@ class GroveRoom extends React.Component {
       returnMessages: [],
       admin: false,
       username: "",
-      users: []
+      users: [],
+      id: ""
     }
   }
   componentWillMount() {
@@ -140,7 +141,7 @@ componentDidMount() {
           song: this.state.song,
           artist: this.state.artist,
           video_id: this.state.video_id,
-          image: this.state.image
+          image: this.state.image,
         })
       )
     this.refs.fieldNameSong.value = "";
@@ -152,12 +153,11 @@ componentDidMount() {
 
   getAttendees = () => {
     API.getAttendees({
-     username: this.username
+      username: this.state.username,
+      id: this.state.id
     })
     .then(res =>
-    this.setState({
-      users: res.data
-    }))
+    this.setState({users: res.data}))
       .catch(err => console.log(err));
   }
 
@@ -238,10 +238,9 @@ componentDidMount() {
           </Col>
           <Col size="md-6">
             <AttendeeList>
-              {this.state.users.map((attendee, index) => (
-                <li key={attendee.username} className="list-group-item">{attendee.username}</li>
+              {this.state.users.map((attendees) => (
+                <li key={attendees.id} className="list-group-item">{attendees.username}</li>
               ))}
-
             </AttendeeList>
           </Col>
         </Row>

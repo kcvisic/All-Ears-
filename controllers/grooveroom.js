@@ -147,18 +147,21 @@ module.exports = {
     })
   },
   grooveroomAttendees: function (req, res) {
+    const id = req.session.passport.user;
+    console.log("Looking for " + id)
     db.User.findAll({
         where: {
           id: id
         },
         order: [
           ["id", "ASC"]
-        ],
-        include: [db.GroveRoom.id]
+      ]
       })
       .then(function (dbgrooveAttendee) {
+        console.log(dbgrooveAttendee)
         res.send(dbgrooveAttendee)
       }).catch(function (err) {
+        console.log(err)
         res.status(401).json(err)
       })
   }

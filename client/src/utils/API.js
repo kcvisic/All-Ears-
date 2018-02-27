@@ -58,10 +58,10 @@ export default {
     return axios.put("/api/grooveroom/update" , data)
   },
   getAttendees: function (id) {
-    return axios.get("/api/grooveroom/attendee", {
-    params: {
-      userId: id
+    return axios.get("/api/grooveroom/attendees", {
+      params: {
+        id: id
       }
-  })
+    })
 }
 };
