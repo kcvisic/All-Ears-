@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import GrooveTitle from "../../components/GrooveTitle"
 import AdminToggle from "../../components/AdminToggle";
+import AttendeeList from "../../components/Attendee List"
 class GroveRoom extends React.Component {
   constructor(props) {
     super(props);
@@ -53,6 +54,9 @@ class GroveRoom extends React.Component {
 
   }
 
+componentDidMount() {
+  this.getAttendees()
+}
 
   setRoomInfo(roomInfo) {
     this.setState({
@@ -146,6 +150,17 @@ class GroveRoom extends React.Component {
 
   }
 
+  getAttendees = () => {
+    API.getAttendees({
+     username: this.username
+    })
+    .then(res =>
+    this.setState({
+      users: res.data
+    }))
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <Container>
@@ -197,7 +212,7 @@ class GroveRoom extends React.Component {
               <iframe title="This is a unique title" className="youtube" width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.video_id} frameBorder="0" allowFullScreen></iframe>
             </YouTube>
           </Col>
-          <Col size="md-12">
+          <Col size="md-6">
             <div className="chat-mod">
               <div className="chatbox">
                 <div className="chatlogs">
@@ -220,6 +235,14 @@ class GroveRoom extends React.Component {
                 </form>
               </div>
             </div>
+          </Col>
+          <Col size="md-6">
+            <AttendeeList>
+              {this.state.users.map((attendee, index) => (
+                <li key={attendee.username} className="list-group-item">{attendee.username}</li>
+              ))}
+
+            </AttendeeList>
           </Col>
         </Row>
       </Container>

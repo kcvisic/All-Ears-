@@ -7,3 +7,5 @@ const ListOfAttendees = ({children}) => (
         {children}
     </ul>
 )
+
+export default ListOfAttendees;

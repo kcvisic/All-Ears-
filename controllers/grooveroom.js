@@ -149,12 +149,12 @@ module.exports = {
   grooveroomAttendees: function (req, res) {
     db.User.findAll({
         where: {
-          userId: req.session.passport.user
+          id: id
         },
         order: [
           ["id", "ASC"]
         ],
-        include: [db.GroveRoom]
+        include: [db.GroveRoom.id]
       })
       .then(function (dbgrooveAttendee) {
         res.send(dbgrooveAttendee)
