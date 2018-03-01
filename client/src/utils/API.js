@@ -1,61 +1,61 @@
 import axios from "axios";
 
 export default {
-  authenticated: function() {
+  authenticated: function () {
     return axios.get("/auth/authenticated");
   },
-  signIn: function(data) {
+  signIn: function (data) {
     return axios.post('/auth/signin', data);
   },
 
-  logOut: function() {
+  logOut: function () {
     return axios.get('/auth/logout');
   },
 
-  submitSignup: function(data) {
+  submitSignup: function (data) {
     return axios.post('/auth/signup', data);
   },
-  getYouTubeVideo: function(keyword) {
+  getYouTubeVideo: function (keyword) {
     return axios.get('/api/youtube/search/' + keyword);
   },
-  getGrooveRoomInfo: function(id) {
+  getGrooveRoomInfo: function (id) {
     return axios.get('/api/grooveroom/room/' + id);
   },
-  saveGrooveRoomForm: function(data) {
+  saveGrooveRoomForm: function (data) {
     return axios.post("/api/grooveroom/create", data);
   },
-  getGrooveRoomMessages: function(groveroomId) {
+  getGrooveRoomMessages: function (groveroomId) {
     return axios.get("/api/grooveroom/messages", {
       params: {
         groveroomId: groveroomId
       }
     })
   },
-  saveGrooveRoomMessage: function(data) {
+  saveGrooveRoomMessage: function (data) {
     return axios.post("/api/grooveroom/message", data);
   },
 
-  findAllGrooveRooms: function() {
+  findAllGrooveRooms: function () {
     return axios.get("/api/grooveroom/room")
   },
 
-  deleteGrooveRoom: function(roomId){
+  deleteGrooveRoom: function (roomId) {
     return axios.delete("/api/grooveroom/room", {
       params: {
         roomId: roomId
-          }
-      })
+      }
+    })
 
   },
-  checkIfAdmin: function(room_id){
+  checkIfAdmin: function (room_id) {
     return axios.get("/api/grooveroom/admin", {
       params: {
         room_id: room_id
       }
     })
   },
-  updateGrooveRoomData: function(data) {
-    return axios.put("/api/grooveroom/update" , data)
+  updateGrooveRoomData: function (data) {
+    return axios.put("/api/grooveroom/update", data)
   },
   getAttendees: function (id) {
     return axios.get("/api/grooveroom/attendees", {
@@ -63,5 +63,6 @@ export default {
         id: id
       }
     })
-}
+    
+  }
 };

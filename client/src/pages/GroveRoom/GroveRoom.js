@@ -70,6 +70,7 @@ componentDidMount() {
       message: "",
       returnMessages: [],
       admin: false,
+      username: "",
     });
   }
 
@@ -152,10 +153,7 @@ componentDidMount() {
   }
 
   getAttendees = () => {
-    API.getAttendees({
-      username: this.state.username,
-      id: this.state.id
-    })
+    API.getAttendees(this.state.id)
     .then(res =>
     this.setState({users: res.data}))
       .catch(err => console.log(err));
@@ -239,7 +237,7 @@ componentDidMount() {
           <Col size="md-6">
             <AttendeeList>
               {this.state.users.map((attendees) => (
-                <li key={attendees.id} className="list-group-item">{attendees.username}</li>
+                <li className="list-group-item list-style">{attendees.username}</li>
               ))}
             </AttendeeList>
           </Col>

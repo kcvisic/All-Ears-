@@ -134,11 +134,7 @@ module.exports = {
     db.Messages.findAll({
       where: {
         GroveRoomId: req.query.groveroomId
-      },
-      order: [
-        ["id", "ASC"]
-      ],
-      include: [db.User]
+      }
 
     }).then(function (groveroomMessages) {
       res.send(groveroomMessages)
@@ -156,6 +152,7 @@ module.exports = {
         order: [
           ["id", "ASC"]
       ]
+      
       })
       .then(function (dbgrooveAttendee) {
         console.log(dbgrooveAttendee)
